@@ -121,24 +121,9 @@ export default function Footer() {
             >
               {site.email}
             </a>
-            <div className="mt-6 flex gap-3">
-              <a
-                href={site.whatsapp}
-                target="_blank"
-                rel="noopener"
-                className="rounded-full border border-white/15 px-4 py-2 text-[0.85rem] transition-colors hover:border-white/40 hover:text-white"
-              >
-                WhatsApp
-              </a>
-              <a
-                href={site.telegram}
-                target="_blank"
-                rel="noopener"
-                className="rounded-full border border-white/15 px-4 py-2 text-[0.85rem] transition-colors hover:border-white/40 hover:text-white"
-              >
-                Telegram
-              </a>
-            </div>
+            <p className="mt-6 text-[0.85rem] leading-relaxed text-white/45">
+              Лицензия {site.license}
+            </p>
           </div>
         </div>
 

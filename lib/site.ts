@@ -14,8 +14,6 @@ export const site = {
 
   phone: "+7 (495) 120-45-90",
   phoneHref: "+74951204590",
-  whatsapp: "https://wa.me/74951204590",
-  telegram: "https://t.me/aurum_clinic",
   email: "hello@aurum-clinic.ru",
 
   address: {

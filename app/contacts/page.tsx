@@ -73,25 +73,8 @@ export default function ContactsPage() {
                   </Item>
                   <Item label="Режим работы">{site.hours}</Item>
                   <Item label="Лицензия">{site.license}</Item>
-                  <Item label="Мессенджеры">
-                    <span className="flex gap-4">
-                      <a
-                        href={site.whatsapp}
-                        target="_blank"
-                        rel="noopener"
-                        className="transition-colors hover:text-royal-600"
-                      >
-                        WhatsApp
-                      </a>
-                      <a
-                        href={site.telegram}
-                        target="_blank"
-                        rel="noopener"
-                        className="transition-colors hover:text-royal-600"
-                      >
-                        Telegram
-                      </a>
-                    </span>
+                  <Item label="Парковка">
+                    Подземный паркинг, первые 3 часа бесплатно
                   </Item>
                 </dl>
               </div>

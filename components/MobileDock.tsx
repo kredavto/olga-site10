@@ -24,7 +24,7 @@ export default function MobileDock() {
         animate={{ y: show ? 0 : 120 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="glass mx-3 mb-3 grid grid-cols-[1fr_auto_auto_auto] items-center gap-2 rounded-[22px] p-2">
+        <div className="glass mx-3 mb-3 grid grid-cols-[1fr_auto] items-center gap-2 rounded-[22px] p-2">
           <button
             onClick={() => openBooking({})}
             className="btn btn-primary !py-3.5 text-[0.95rem]"
@@ -34,23 +34,6 @@ export default function MobileDock() {
           <DockIcon href={`tel:${site.phoneHref}`} label="Позвонить">
             <path
               d="M4.5 3.5h3l1.5 4-2 1.5a11 11 0 005 5l1.5-2 4 1.5v3c0 .8-.7 1.5-1.5 1.4C9.4 17.9 3.1 11.6 3.1 5c0-.8.6-1.5 1.4-1.5Z"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinejoin="round"
-            />
-          </DockIcon>
-          <DockIcon href={site.whatsapp} label="WhatsApp" external>
-            <path
-              d="M3.5 16.5l1-3.4a6.5 6.5 0 112.6 2.5l-3.6.9Z"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinejoin="round"
-            />
-            <path d="M7.8 8.2c.4 2 2 3.6 4 4l.9-1.2 1.6.7-.2 1.4c-2.6.5-5.9-2.5-6-5.2l1.4-.4.8 1.6-.5.9" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
-          </DockIcon>
-          <DockIcon href={site.telegram} label="Telegram" external>
-            <path
-              d="M17.5 4.5L2.8 10.2l4 1.3 1.5 4.6 2.3-2.7 4 3 2.9-11.9Z"
               stroke="currentColor"
               strokeWidth="1.5"
               strokeLinejoin="round"

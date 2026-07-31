@@ -236,24 +236,12 @@ export default function Hero() {
               Записаться онлайн
             </button>
 
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              <a
-                href={site.whatsapp}
-                target="_blank"
-                rel="noopener"
-                className="btn btn-ghost !py-3 text-[0.9rem]"
-              >
-                WhatsApp
-              </a>
-              <a
-                href={site.telegram}
-                target="_blank"
-                rel="noopener"
-                className="btn btn-ghost !py-3 text-[0.9rem]"
-              >
-                Telegram
-              </a>
-            </div>
+            <a
+              href={`tel:${site.phoneHref}`}
+              className="btn btn-ghost mt-3 w-full !py-3 text-[0.9rem]"
+            >
+              Позвонить {site.phone}
+            </a>
 
             <p className="mt-5 flex items-baseline gap-2 text-[0.84rem] text-muted">
               <Counter to={site.stats.reviews} className="font-semibold text-graphite" />

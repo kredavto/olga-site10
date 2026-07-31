@@ -80,14 +80,7 @@ export default function BookingModal() {
                 >
                   {site.phone}
                 </a>
-                <div className="flex gap-3 text-muted">
-                  <a href={site.whatsapp} target="_blank" rel="noopener" className="hover:text-royal-600">
-                    WhatsApp
-                  </a>
-                  <a href={site.telegram} target="_blank" rel="noopener" className="hover:text-royal-600">
-                    Telegram
-                  </a>
-                </div>
+                <span className="text-muted">{site.hours}</span>
               </div>
             </div>
           </motion.div>

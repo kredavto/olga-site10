@@ -132,11 +132,8 @@ export default function Header() {
             </p>
             <div className="flex items-center gap-5">
               <span className="text-white/55">Лицензия {site.license}</span>
-              <a href={site.whatsapp} className="hover:text-white" target="_blank" rel="noopener">
-                WhatsApp
-              </a>
-              <a href={site.telegram} className="hover:text-white" target="_blank" rel="noopener">
-                Telegram
+              <a href={`tel:${site.phoneHref}`} className="hover:text-white">
+                {site.phone}
               </a>
             </div>
           </div>
@@ -467,14 +464,12 @@ export default function Header() {
                 >
                   Записаться на консультацию
                 </button>
-                <div className="grid grid-cols-2 gap-3">
-                  <a href={site.whatsapp} target="_blank" rel="noopener" className="btn btn-ghost !py-3 text-[0.9rem]">
-                    WhatsApp
-                  </a>
-                  <a href={site.telegram} target="_blank" rel="noopener" className="btn btn-ghost !py-3 text-[0.9rem]">
-                    Telegram
-                  </a>
-                </div>
+                <a
+                  href={`tel:${site.phoneHref}`}
+                  className="btn btn-ghost w-full !py-3 text-[0.9rem]"
+                >
+                  Позвонить
+                </a>
               </div>
             </motion.aside>
           </motion.div>
