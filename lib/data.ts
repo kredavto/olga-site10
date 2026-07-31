@@ -249,6 +249,16 @@ export type Case = {
   result: string;
   doctorId: string;
   serviceSlug: string;
+  /**
+   * Photography for the before/after comparator. Two options:
+   *   - `photos: { before, after }` — two separate shots;
+   *   - `collage` — one file holding both states, split either vertically
+   *     («до» сверху) or horizontally («до» слева).
+   * Without either, the comparator falls back to the drawn illustration.
+   */
+  photos?: { before: string; after: string };
+  collage?: string;
+  collageSplit?: "vertical" | "horizontal";
 };
 
 export const cases: Case[] = [
@@ -262,6 +272,8 @@ export const cases: Case[] = [
     result: "Закрыта диастема, восстановлена высота коронок, оттенок BL2",
     doctorId: "morozova",
     serviceSlug: "estetika",
+    collage: "/cases/ret1.jpeg",
+    collageSplit: "vertical",
   },
   {
     id: "case-2",

@@ -1,10 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import { Reveal } from "./motion";
-import { cases } from "@/lib/data";
+import { cases, type Case } from "@/lib/data";
 import { getDoctor } from "@/lib/data";
 
 export default function BeforeAfter() {
@@ -25,7 +26,7 @@ export default function BeforeAfter() {
 
         <div className="mt-16 grid gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
           <Reveal>
-            <Comparator caseId={c.id} />
+            <Comparator item={c} />
           </Reveal>
 
           <div className="lg:sticky lg:top-28">
@@ -96,10 +97,11 @@ function Row({ label, value }: { label: string; value: string }) {
 
 /* ------------------------------------------------------------------ */
 
-function Comparator({ caseId }: { caseId: string }) {
+function Comparator({ item }: { item: Case }) {
   const [pos, setPos] = useState(50);
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
+  const caseId = item.id;
 
   const set = useCallback((clientX: number) => {
     const r = ref.current?.getBoundingClientRect();
@@ -121,19 +123,21 @@ function Comparator({ caseId }: { caseId: string }) {
   return (
     <div
       ref={ref}
-      className="relative aspect-[16/11] w-full cursor-ew-resize select-none overflow-hidden rounded-[30px] border border-line shadow-[var(--shadow-lift)]"
+      // pan-y keeps vertical page scrolling on touch while the horizontal
+      // gesture drives the slider
+      className="relative aspect-[2/1] w-full cursor-ew-resize select-none overflow-hidden rounded-[30px] border border-line shadow-[var(--shadow-lift)] [touch-action:pan-y]"
       onPointerDown={(e) => {
         dragging.current = true;
         set(e.clientX);
       }}
     >
-      <Smile key={`${caseId}-after`} variant="after" />
+      <Frame key={`${caseId}-after`} item={item} variant="after" />
 
       <div
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       >
-        <Smile key={`${caseId}-before`} variant="before" />
+        <Frame key={`${caseId}-before`} item={item} variant="before" />
       </div>
 
       {/* labels */}
@@ -176,8 +180,70 @@ function Comparator({ caseId }: { caseId: string }) {
 }
 
 /**
- * Designed illustration of the smile line. Swap for retouched clinical
- * photography by rendering <Image> here — the comparator is source-agnostic.
+ * One side of the comparator. Uses real photography when the case provides it
+ * and falls back to the drawn illustration if the file is missing or fails to
+ * load, so the section never renders a broken image.
+ */
+function Frame({ item, variant }: { item: Case; variant: "before" | "after" }) {
+  const [failed, setFailed] = useState(false);
+
+  const src = item.photos
+    ? variant === "before"
+      ? item.photos.before
+      : item.photos.after
+    : item.collage;
+
+  if (!src || failed) return <Smile variant={variant} />;
+
+  // A collage holds both states in one file. The image is laid out at double
+  // size along the split axis and shifted so the frame shows exactly the
+  // requested half — no cropping, no duplicated assets.
+  const isCollage = !item.photos;
+  const vertical = (item.collageSplit ?? "vertical") === "vertical";
+
+  const layout = !isCollage
+    ? { inset: 0 }
+    : vertical
+      ? {
+          left: 0,
+          right: 0,
+          height: "200%",
+          top: variant === "before" ? "0%" : "-100%",
+        }
+      : {
+          top: 0,
+          bottom: 0,
+          width: "200%",
+          left: variant === "before" ? "0%" : "-100%",
+        };
+
+  return (
+    // pointer-events-none keeps the browser from starting a native image drag,
+    // which would swallow the pointermove stream the slider depends on.
+    <div className="pointer-events-none absolute inset-0 overflow-hidden bg-graphite">
+      <div className="absolute" style={layout}>
+        <Image
+          src={src}
+          alt={
+            variant === "before"
+              ? `До лечения: ${item.title}`
+              : `После лечения: ${item.title}`
+          }
+          fill
+          sizes="(max-width: 1024px) 100vw, 60vw"
+          className="select-none object-cover"
+          draggable={false}
+          priority={variant === "after"}
+          onError={() => setFailed(true)}
+        />
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Designed illustration of the smile line — the fallback when a case has no
+ * photography attached.
  */
 function Smile({ variant }: { variant: "before" | "after" }) {
   const before = variant === "before";
