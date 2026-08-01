@@ -170,7 +170,7 @@ export default function Hero() {
 
               <a
                 href={`tel:${site.phoneHref}`}
-                className="ml-1 hidden text-[1.05rem] font-semibold tracking-tight transition-colors hover:text-royal-600 sm:block"
+                className="ml-1 hidden text-[1.05rem] font-semibold tracking-tight transition-colors hover:text-royal-700 sm:block"
               >
                 {site.phone}
               </a>
@@ -202,7 +202,7 @@ export default function Hero() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="t-eyebrow text-royal-600">Свободные окна</p>
+                <p className="t-eyebrow text-royal-700">Свободные окна</p>
                 <p className="mt-2 text-[1.32rem] font-bold leading-tight">
                   Ближайшая консультация — сегодня
                 </p>

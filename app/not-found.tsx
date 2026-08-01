@@ -10,7 +10,7 @@ export default function NotFound() {
       <div className="med-grid" />
 
       <div className="shell relative">
-        <p className="t-eyebrow text-royal-600">Ошибка 404</p>
+        <p className="t-eyebrow text-royal-700">Ошибка 404</p>
         <h1 className="t-h1 mt-5 font-bold">Такой страницы нет</h1>
         <p className="t-lead mt-6 max-w-xl text-slate">
           Возможно, страница переехала или в адресе опечатка. Вот куда чаще всего

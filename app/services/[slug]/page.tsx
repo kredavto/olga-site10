@@ -105,7 +105,7 @@ export default async function ServicePage({ params }: Params) {
                   intensity={5}
                   className="card card-lift h-full overflow-hidden p-8"
                 >
-                  <span className="t-eyebrow text-royal-600">
+                  <span className="t-eyebrow text-royal-700">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-4 text-[1.24rem] font-bold leading-snug tracking-tight">

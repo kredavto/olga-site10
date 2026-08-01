@@ -136,7 +136,7 @@ function NavButton({ dir, onClick }: { dir: -1 | 1; onClick: () => void }) {
     <button
       onClick={onClick}
       aria-label={dir === -1 ? "Предыдущие отзывы" : "Следующие отзывы"}
-      className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-white transition-colors hover:border-royal-300 hover:text-royal-600"
+      className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-white transition-colors hover:border-royal-300 hover:text-royal-700"
     >
       <svg
         width="15"

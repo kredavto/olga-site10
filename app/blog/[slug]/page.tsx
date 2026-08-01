@@ -72,7 +72,7 @@ export default async function PostPage({ params }: Params) {
 
           <Reveal>
             <div className="card mt-4 p-8">
-              <p className="t-eyebrow text-royal-600">Остались вопросы</p>
+              <p className="t-eyebrow text-royal-700">Остались вопросы</p>
               <p className="mt-3 text-[1.08rem] leading-relaxed">
                 Позвоните {site.phone} — координатор соединит с профильным врачом,
                 или приходите на консультацию с готовым планом из другой клиники:

@@ -19,7 +19,7 @@ export default function Breadcrumbs({ trail }: { trail: Crumb[] }) {
                 </span>
               ) : (
                 <>
-                  <Link href={c.href} className="transition-colors hover:text-royal-600">
+                  <Link href={c.href} className="transition-colors hover:text-royal-700">
                     {c.name}
                   </Link>
                   <span aria-hidden className="text-line">

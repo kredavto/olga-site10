@@ -58,7 +58,7 @@ export default function ContactsPage() {
                   <Item label="Телефон">
                     <a
                       href={`tel:${site.phoneHref}`}
-                      className="transition-colors hover:text-royal-600"
+                      className="transition-colors hover:text-royal-700"
                     >
                       {site.phone}
                     </a>
@@ -66,7 +66,7 @@ export default function ContactsPage() {
                   <Item label="Почта">
                     <a
                       href={`mailto:${site.email}`}
-                      className="transition-colors hover:text-royal-600"
+                      className="transition-colors hover:text-royal-700"
                     >
                       {site.email}
                     </a>
@@ -87,7 +87,7 @@ export default function ContactsPage() {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(150deg,#eef2f9,#dfe6f3 55%,#cdd9ee)",
+                      "linear-gradient(150deg,#f3ede2,#e6ded0 55%,#d5cdbd)",
                   }}
                 />
                 <svg
@@ -99,7 +99,7 @@ export default function ContactsPage() {
                   {/* river */}
                   <path
                     d="M-20 340 C 160 300, 300 380, 460 330 S 720 250, 830 290"
-                    stroke="#a9c4ea"
+                    stroke="#a9c4d8"
                     strokeWidth="46"
                     fill="none"
                     opacity="0.7"
@@ -112,7 +112,7 @@ export default function ContactsPage() {
                       y1={y}
                       x2="830"
                       y2={y - 30}
-                      stroke="#ffffff"
+                      stroke="#fbf7f0"
                       strokeWidth="10"
                     />
                   ))}
@@ -123,7 +123,7 @@ export default function ContactsPage() {
                       y1="-20"
                       x2={x - 40}
                       y2="520"
-                      stroke="#ffffff"
+                      stroke="#fbf7f0"
                       strokeWidth="8"
                     />
                   ))}
@@ -142,7 +142,7 @@ export default function ContactsPage() {
                       width="90"
                       height="60"
                       rx="8"
-                      fill="#ffffff"
+                      fill="#fbf7f0"
                       opacity="0.65"
                     />
                   ))}

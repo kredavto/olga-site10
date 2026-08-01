@@ -32,7 +32,7 @@ export default function PageHeader({
           <div>
             {eyebrow && (
               <Reveal>
-                <p className="t-eyebrow mb-5 text-royal-600">{eyebrow}</p>
+                <p className="t-eyebrow mb-5 text-royal-700">{eyebrow}</p>
               </Reveal>
             )}
             <SplitText

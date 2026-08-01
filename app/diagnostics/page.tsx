@@ -83,7 +83,7 @@ export default function DiagnosticsPage() {
                   intensity={6}
                   className="card card-lift h-full overflow-hidden p-8"
                 >
-                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-royal-50 text-royal-600 transition-colors duration-500 group-hover:bg-royal-600 group-hover:text-white">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-royal-50 text-royal-700 transition-colors duration-500 group-hover:bg-royal-600 group-hover:text-white">
                     <Icon name={t.icon} />
                   </span>
                   <h2 className="mt-6 text-[1.2rem] font-bold leading-snug tracking-tight">

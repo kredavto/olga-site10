@@ -50,7 +50,9 @@ lib/
 
 Токены объявлены в `@theme` (`app/globals.css`):
 
-- нейтрали `white / pearl / mist / line / graphite / slate / muted`;
+- тёплая бежевая канва: `canvas` (фон страницы), `white` (светлая
+  поверхность карточек и стекла), `pearl`, `mist`, `line`;
+- текст: `graphite / slate / muted`;
 - основной `royal-50…900` (#2563EB);
 - акценты `emerald-soft`, `beige`, `champagne`, `champagne-deep`;
 - тени `soft / lift / float / glow`, easing `--ease-lux`.

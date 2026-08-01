@@ -59,7 +59,7 @@ export default function ServicesGrid({
                           ? "bg-beige/50 text-[#8a6f3c] group-hover:bg-champagne group-hover:text-white"
                           : s.accent === "emerald"
                             ? "bg-emerald-soft/12 text-emerald-soft group-hover:bg-emerald-soft group-hover:text-white"
-                            : "bg-royal-50 text-royal-600 group-hover:bg-royal-600 group-hover:text-white"
+                            : "bg-royal-50 text-royal-700 group-hover:bg-royal-600 group-hover:text-white"
                       }`}
                     >
                       <Icon name={iconFor[s.slug]} size={26} />

@@ -5,14 +5,18 @@
    ============================================================ */
 
 @theme {
-  /* Neutrals */
-  --color-white: #ffffff;
-  --color-pearl: #f7f8fa;
-  --color-mist: #eceef2;
-  --color-line: #e2e6ec;
+  /* Neutrals — warm beige canvas.
+     `white` is the light surface token used by cards, glass and the header;
+     it is a soft paper beige rather than pure #fff so the whole site reads
+     warm. True white survives only where it sits on the dark sections. */
+  --color-white: #fcf9f4;
+  --color-canvas: #f6f0e6;
+  --color-pearl: #efe7da;
+  --color-mist: #e7ded0;
+  --color-line: #e2d8c8;
   --color-graphite: #202124;
   --color-slate: #4b5158;
-  --color-muted: #6b7280;
+  --color-muted: #5f6672;
 
   /* Primary — Royal Blue */
   --color-royal-50: #eff4ff;
@@ -79,7 +83,7 @@ html.lenis body {
 }
 
 body {
-  background: var(--color-white);
+  background: var(--color-canvas);
   color: var(--color-graphite);
   font-family: var(--font-sans);
   font-size: 18px;
@@ -181,10 +185,10 @@ button {
 /* ---------- Glass ---------- */
 
 .glass {
-  background: color-mix(in srgb, #ffffff 72%, transparent);
-  backdrop-filter: blur(28px) saturate(1.7);
-  -webkit-backdrop-filter: blur(28px) saturate(1.7);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: color-mix(in srgb, var(--color-white) 84%, transparent);
+  backdrop-filter: blur(28px) saturate(1.15);
+  -webkit-backdrop-filter: blur(28px) saturate(1.15);
+  border: 1px solid rgba(255, 253, 248, 0.72);
   box-shadow: var(--shadow-lift);
 }
 
@@ -259,17 +263,17 @@ button {
   background:
     radial-gradient(
       52rem 32rem at 12% 8%,
-      rgba(37, 99, 235, 0.16),
+      rgba(37, 99, 235, 0.1),
       transparent 62%
     ),
     radial-gradient(
       40rem 30rem at 92% 22%,
-      rgba(79, 174, 146, 0.14),
+      rgba(79, 174, 146, 0.06),
       transparent 60%
     ),
     radial-gradient(
       44rem 34rem at 68% 96%,
-      rgba(216, 190, 138, 0.18),
+      rgba(216, 190, 138, 0.26),
       transparent 62%
     );
   filter: blur(6px);
@@ -458,7 +462,7 @@ button {
 }
 
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.65);
+  background: color-mix(in srgb, var(--color-white) 68%, transparent);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-line);
@@ -466,7 +470,7 @@ button {
 }
 .btn-ghost:hover {
   border-color: var(--color-royal-300);
-  background: #fff;
+  background: var(--color-white);
   box-shadow: var(--shadow-lift);
 }
 
@@ -483,7 +487,7 @@ button {
 .card {
   position: relative;
   border-radius: 26px;
-  background: #fff;
+  background: var(--color-white);
   border: 1px solid var(--color-line);
   box-shadow: var(--shadow-soft);
   transition:
@@ -511,7 +515,7 @@ button {
 }
 
 .chip-gold {
-  background: color-mix(in srgb, var(--color-beige) 45%, #fff);
+  background: color-mix(in srgb, var(--color-beige) 42%, var(--color-white));
   color: #6f5a2e;
   border-color: rgba(185, 153, 95, 0.3);
 }
@@ -526,7 +530,7 @@ button {
   width: 100%;
   padding: 1.6rem 1.1rem 0.65rem;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.7);
+  background: color-mix(in srgb, var(--color-white) 72%, transparent);
   border: 1px solid var(--color-line);
   font-size: 1rem;
   transition:
@@ -538,7 +542,7 @@ button {
 .field select:focus,
 .field textarea:focus {
   outline: none;
-  background: #fff;
+  background: var(--color-white);
   border-color: var(--color-royal-400);
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
 }
@@ -583,7 +587,7 @@ button {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--color-white);
   border: 2px solid var(--color-royal-600);
   box-shadow: 0 6px 18px -6px rgba(37, 99, 235, 0.7);
   cursor: grab;
@@ -597,7 +601,7 @@ button {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--color-white);
   border: 2px solid var(--color-royal-600);
   box-shadow: 0 6px 18px -6px rgba(37, 99, 235, 0.7);
   cursor: grab;
@@ -612,7 +616,7 @@ button {
   background: var(--color-pearl);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cdd4de;
+  background: #cfc3ae;
   border-radius: 999px;
   border: 3px solid var(--color-pearl);
 }

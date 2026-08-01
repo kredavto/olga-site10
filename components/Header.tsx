@@ -179,7 +179,7 @@ export default function Header() {
           <div className="flex items-center gap-2.5">
             <button
               onClick={() => setSearch(true)}
-              className="hidden h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-slate transition-colors hover:border-royal-300 hover:text-royal-600 lg:flex"
+              className="hidden h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-slate transition-colors hover:border-royal-300 hover:text-royal-700 lg:flex"
               aria-label="Поиск по сайту"
             >
               <SearchIcon />
@@ -187,7 +187,7 @@ export default function Header() {
 
             <a
               href={`tel:${site.phoneHref}`}
-              className="hidden text-[1.02rem] font-semibold tracking-tight text-graphite transition-colors hover:text-royal-600 md:block"
+              className="hidden text-[1.02rem] font-semibold tracking-tight text-graphite transition-colors hover:text-royal-700 md:block"
             >
               {site.phone}
             </a>
