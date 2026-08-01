@@ -126,7 +126,7 @@ export default function DoctorCard({
         <div className="mt-auto flex items-center gap-3 pt-6">
           <Link
             href={`/doctors/${doctor.id}`}
-            className="text-[0.92rem] font-semibold text-royal-700 transition-colors hover:text-royal-800"
+            className="text-[0.92rem] font-semibold text-royal-800 transition-colors hover:text-royal-800"
           >
             Подробнее о враче →
           </Link>
@@ -137,7 +137,7 @@ export default function DoctorCard({
                 subtitle: `${doctor.name} — ${doctor.role}. Координатор подберёт удобное время.`,
               })
             }
-            className="ml-auto rounded-full border border-line px-4 py-2 text-[0.85rem] transition-colors hover:border-royal-300 hover:text-royal-700"
+            className="ml-auto rounded-full border border-line px-4 py-2 text-[0.85rem] transition-colors hover:border-royal-300 hover:text-royal-800"
           >
             Записаться
           </button>

@@ -42,7 +42,7 @@ export default function ReviewsPage() {
               <Reveal key={r.source} delay={i * 0.06} className="h-full">
                 <div className="card h-full p-7">
                   <p className="t-eyebrow text-muted">{r.source}</p>
-                  <p className="mt-4 text-[2.2rem] font-bold leading-none text-royal-700">
+                  <p className="mt-4 text-[2.2rem] font-bold leading-none text-royal-800">
                     {r.score}
                   </p>
                   <p className="mt-3 text-[0.9rem] text-slate">{r.count}</p>

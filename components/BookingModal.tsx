@@ -60,7 +60,7 @@ export default function BookingModal() {
             </button>
 
             <div className="relative px-6 py-9 sm:px-10 sm:py-11">
-              <p className="t-eyebrow text-royal-700">AURUM</p>
+              <p className="t-eyebrow text-royal-800">AURUM</p>
               <h2 className="t-h3 mt-3 font-bold">
                 {intent.title ?? "Запись на консультацию"}
               </h2>

@@ -99,7 +99,7 @@ export default function PromoPage() {
                   <h2 className="mt-6 text-[1.24rem] font-bold leading-snug tracking-tight">
                     {p.title}
                   </h2>
-                  <p className="tnum mt-4 text-[1.2rem] font-bold text-royal-700">
+                  <p className="tnum mt-4 text-[1.2rem] font-bold text-royal-800">
                     {p.price}
                   </p>
                   <p className="mt-4 text-[0.96rem] leading-relaxed text-slate">

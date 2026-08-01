@@ -41,7 +41,7 @@ export default function Reviews() {
                 key={r.source}
                 className="glass flex items-center gap-3 rounded-2xl px-4 py-3"
               >
-                <span className="text-[1.2rem] font-bold text-royal-700">
+                <span className="text-[1.2rem] font-bold text-royal-800">
                   {r.score}
                 </span>
                 <span className="text-[0.85rem] leading-tight">
@@ -136,7 +136,7 @@ function NavButton({ dir, onClick }: { dir: -1 | 1; onClick: () => void }) {
     <button
       onClick={onClick}
       aria-label={dir === -1 ? "Предыдущие отзывы" : "Следующие отзывы"}
-      className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-white transition-colors hover:border-royal-300 hover:text-royal-700"
+      className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-white transition-colors hover:border-royal-300 hover:text-royal-800"
     >
       <svg
         width="15"

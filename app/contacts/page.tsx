@@ -58,7 +58,7 @@ export default function ContactsPage() {
                   <Item label="Телефон">
                     <a
                       href={`tel:${site.phoneHref}`}
-                      className="transition-colors hover:text-royal-700"
+                      className="transition-colors hover:text-royal-800"
                     >
                       {site.phone}
                     </a>
@@ -66,7 +66,7 @@ export default function ContactsPage() {
                   <Item label="Почта">
                     <a
                       href={`mailto:${site.email}`}
-                      className="transition-colors hover:text-royal-700"
+                      className="transition-colors hover:text-royal-800"
                     >
                       {site.email}
                     </a>
@@ -87,7 +87,7 @@ export default function ContactsPage() {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(150deg,#f9f0da,#efe2c4 55%,#e0d0aa)",
+                      "linear-gradient(150deg,#fde3d8,#f9cfc6 55%,#f3b9c2)",
                   }}
                 />
                 <svg
@@ -112,7 +112,7 @@ export default function ContactsPage() {
                       y1={y}
                       x2="830"
                       y2={y - 30}
-                      stroke="#fffcf5"
+                      stroke="#fff8f3"
                       strokeWidth="10"
                     />
                   ))}
@@ -123,7 +123,7 @@ export default function ContactsPage() {
                       y1="-20"
                       x2={x - 40}
                       y2="520"
-                      stroke="#fffcf5"
+                      stroke="#fff8f3"
                       strokeWidth="8"
                     />
                   ))}
@@ -142,7 +142,7 @@ export default function ContactsPage() {
                       width="90"
                       height="60"
                       rx="8"
-                      fill="#fffcf5"
+                      fill="#fff8f3"
                       opacity="0.65"
                     />
                   ))}

@@ -69,7 +69,7 @@ export default function FaqAccordion({
                   </span>
                   <span
                     className={`mt-2.5 block text-[1.1rem] font-semibold leading-snug tracking-tight transition-colors sm:text-[1.2rem] ${
-                      isOpen ? "text-royal-700" : "group-hover:text-royal-700"
+                      isOpen ? "text-royal-800" : "group-hover:text-royal-800"
                     }`}
                   >
                     {f.q}

@@ -94,7 +94,7 @@ export default function Process() {
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="relative z-10"
                 >
-                  <p className="t-eyebrow text-royal-700">
+                  <p className="t-eyebrow text-royal-800">
                     Этап {processSteps[active].n} · {processSteps[active].duration}
                   </p>
                   <h3 className="t-h3 mt-4 font-bold">

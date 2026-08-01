@@ -93,7 +93,7 @@ export default function CareersPage() {
                   <div>
                     <h2 className="t-h4 font-bold leading-snug">{j.title}</h2>
                     <p className="mt-2.5 text-[0.9rem] text-muted">{j.type}</p>
-                    <p className="tnum mt-4 text-[1.2rem] font-bold text-royal-700">
+                    <p className="tnum mt-4 text-[1.2rem] font-bold text-royal-800">
                       {j.income}
                     </p>
                   </div>
@@ -146,7 +146,7 @@ export default function CareersPage() {
               Не нашли свою позицию? Присылайте резюме на{" "}
               <a
                 href={`mailto:${site.email}`}
-                className="font-semibold text-royal-700 underline underline-offset-4"
+                className="font-semibold text-royal-800 underline underline-offset-4"
               >
                 {site.email}
               </a>{" "}

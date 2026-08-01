@@ -86,7 +86,7 @@ function DockIcon({
       aria-label={label}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener" : undefined}
-      className="flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-line bg-white/80 text-royal-700 transition-colors active:bg-royal-50"
+      className="flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-line bg-white/80 text-royal-800 transition-colors active:bg-royal-50"
     >
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
         {children}

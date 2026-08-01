@@ -138,7 +138,7 @@ export default function BookingForm({
         />
         <span>
           Согласен на обработку персональных данных и с{" "}
-          <a href="/privacy" className="text-royal-700 underline underline-offset-2">
+          <a href="/privacy" className="text-royal-800 underline underline-offset-2">
             политикой конфиденциальности
           </a>
         </span>

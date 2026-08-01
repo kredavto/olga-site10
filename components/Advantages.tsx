@@ -37,7 +37,7 @@ export default function Advantages() {
                 className="card card-lift relative h-full overflow-hidden p-7"
               >
                 <div className="relative z-10">
-                  <span className="flex h-13 w-13 items-center justify-center rounded-2xl bg-royal-50 p-3.5 text-royal-700 transition-colors duration-500 group-hover:bg-royal-600 group-hover:text-white">
+                  <span className="flex h-13 w-13 items-center justify-center rounded-2xl bg-royal-50 p-3.5 text-royal-800 transition-colors duration-500 group-hover:bg-royal-600 group-hover:text-white">
                     <Icon name={a.icon} />
                   </span>
                   <h3 className="mt-6 text-[1.13rem] font-bold leading-snug tracking-tight">

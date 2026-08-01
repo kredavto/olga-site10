@@ -51,7 +51,7 @@ export default function PricingCenter() {
                         <h3 className="mt-2.5 text-[1.28rem] font-bold tracking-tight">
                           {s.h1}
                         </h3>
-                        <p className="tnum mt-3 text-[1.42rem] font-bold text-royal-700">
+                        <p className="tnum mt-3 text-[1.42rem] font-bold text-royal-800">
                           {rub(s.priceFrom)} — {rub(s.priceTo)}
                         </p>
                         <p className="mt-1 text-[0.86rem] text-muted">

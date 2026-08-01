@@ -38,7 +38,7 @@ export default function BlogPage() {
             >
               <div>
                 <span className="chip">{lead.category}</span>
-                <h2 className="t-h3 mt-6 font-bold leading-snug transition-colors group-hover:text-royal-700">
+                <h2 className="t-h3 mt-6 font-bold leading-snug transition-colors group-hover:text-royal-800">
                   {lead.title}
                 </h2>
                 <p className="t-lead mt-5 text-slate">{lead.excerpt}</p>
@@ -70,7 +70,7 @@ export default function BlogPage() {
                   className="card card-lift group flex h-full flex-col p-8"
                 >
                   <span className="chip w-fit">{p.category}</span>
-                  <h2 className="mt-5 text-[1.2rem] font-bold leading-snug tracking-tight transition-colors group-hover:text-royal-700">
+                  <h2 className="mt-5 text-[1.2rem] font-bold leading-snug tracking-tight transition-colors group-hover:text-royal-800">
                     {p.title}
                   </h2>
                   <p className="mt-3.5 text-[0.95rem] leading-relaxed text-slate">

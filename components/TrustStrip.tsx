@@ -71,7 +71,7 @@ export default function TrustStrip() {
                 intensity={5}
                 className="glass glass-refract hairline relative h-full overflow-hidden rounded-[26px] p-7"
               >
-                <p className="t-eyebrow text-royal-700">{b.title}</p>
+                <p className="t-eyebrow text-royal-800">{b.title}</p>
                 <p className="mt-3.5 text-[1.28rem] font-bold leading-tight tracking-tight">
                   {b.value}
                 </p>

@@ -59,7 +59,7 @@ export default function ServicesGrid({
                           ? "bg-beige/50 text-[#8a6f3c] group-hover:bg-champagne group-hover:text-white"
                           : s.accent === "emerald"
                             ? "bg-emerald-soft/12 text-emerald-soft group-hover:bg-emerald-soft group-hover:text-white"
-                            : "bg-royal-50 text-royal-700 group-hover:bg-royal-600 group-hover:text-white"
+                            : "bg-royal-50 text-royal-800 group-hover:bg-royal-600 group-hover:text-white"
                       }`}
                     >
                       <Icon name={iconFor[s.slug]} size={26} />
@@ -76,7 +76,7 @@ export default function ServicesGrid({
 
                   <div className="mt-auto flex items-end justify-between gap-4 pt-8">
                     <div>
-                      <p className="tnum text-[1.14rem] font-bold text-royal-700">
+                      <p className="tnum text-[1.14rem] font-bold text-royal-800">
                         {s.priceFrom.toLocaleString("ru-RU")}–
                         {s.priceTo.toLocaleString("ru-RU")} ₽
                       </p>

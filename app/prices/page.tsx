@@ -101,7 +101,7 @@ export default function PricesPage() {
                       <h3 className="mt-2 text-[1.24rem] font-bold tracking-tight">
                         <Link
                           href={`/services/${s.slug}`}
-                          className="transition-colors hover:text-royal-700"
+                          className="transition-colors hover:text-royal-800"
                         >
                           {s.h1}
                         </Link>
@@ -109,7 +109,7 @@ export default function PricesPage() {
                     </div>
                     <Link
                       href={`/services/${s.slug}`}
-                      className="text-[0.9rem] font-semibold text-royal-700"
+                      className="text-[0.9rem] font-semibold text-royal-800"
                     >
                       Об услуге →
                     </Link>
@@ -149,7 +149,7 @@ export default function PricesPage() {
                         {p.note && (
                           <p className="mt-1 text-[0.84rem] text-muted">{p.note}</p>
                         )}
-                        <p className="tnum mt-2 text-[1.05rem] font-bold text-royal-700">
+                        <p className="tnum mt-2 text-[1.05rem] font-bold text-royal-800">
                           {p.from.toLocaleString("ru-RU")}–
                           {p.to.toLocaleString("ru-RU")} ₽
                         </p>

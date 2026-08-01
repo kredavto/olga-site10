@@ -62,7 +62,7 @@ export default function ServicesPage() {
                             href={`/services/${slug}`}
                             className="group flex items-baseline justify-between gap-4 rounded-2xl px-3 py-2.5 transition-colors hover:bg-royal-50"
                           >
-                            <span className="font-medium transition-colors group-hover:text-royal-700">
+                            <span className="font-medium transition-colors group-hover:text-royal-800">
                               {s.nav}
                             </span>
                             <span className="tnum shrink-0 text-[0.82rem] text-muted">

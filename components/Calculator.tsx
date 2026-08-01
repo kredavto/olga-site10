@@ -108,7 +108,7 @@ export default function Calculator() {
       <div className="mesh opacity-60" />
 
       <div className="relative">
-        <p className="t-eyebrow text-royal-700">Калькулятор</p>
+        <p className="t-eyebrow text-royal-800">Калькулятор</p>
         <h3 className="t-h3 mt-3 font-bold">Рассчитать стоимость лечения</h3>
         <p className="mt-3 max-w-md text-[0.96rem] leading-relaxed text-slate">
           Диапазон обновляется мгновенно. Точная сумма фиксируется в плане лечения
@@ -301,7 +301,7 @@ function Field({
       <div className="mb-3 flex items-baseline justify-between">
         <p className="text-[0.88rem] font-medium text-slate">{label}</p>
         {value && (
-          <p className="tnum text-[1.05rem] font-bold text-royal-700">{value}</p>
+          <p className="tnum text-[1.05rem] font-bold text-royal-800">{value}</p>
         )}
       </div>
       {children}

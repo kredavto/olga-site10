@@ -127,7 +127,7 @@ export default function AboutPage() {
             {timeline.map((t, i) => (
               <Reveal key={t.year} delay={(i % 3) * 0.06}>
                 <li className="card grid gap-5 p-7 sm:grid-cols-[7rem_1fr] sm:items-baseline">
-                  <span className="text-[1.7rem] font-bold tracking-tight text-royal-700">
+                  <span className="text-[1.7rem] font-bold tracking-tight text-royal-800">
                     {t.year}
                   </span>
                   <div>

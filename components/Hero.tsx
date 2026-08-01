@@ -31,7 +31,7 @@ export default function Hero() {
       className="scanline relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-[136px] lg:pb-16"
     >
       {/* --- background stack --- */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-pearl to-white" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/45 via-transparent to-white/35" />
       <div className="mesh" />
       <div className="med-grid" />
       <HeroCanvas />
@@ -170,7 +170,7 @@ export default function Hero() {
 
               <a
                 href={`tel:${site.phoneHref}`}
-                className="ml-1 hidden text-[1.05rem] font-semibold tracking-tight transition-colors hover:text-royal-700 sm:block"
+                className="ml-1 hidden text-[1.05rem] font-semibold tracking-tight transition-colors hover:text-royal-800 sm:block"
               >
                 {site.phone}
               </a>
@@ -202,7 +202,7 @@ export default function Hero() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="t-eyebrow text-royal-700">Свободные окна</p>
+                <p className="t-eyebrow text-royal-800">Свободные окна</p>
                 <p className="mt-2 text-[1.32rem] font-bold leading-tight">
                   Ближайшая консультация — сегодня
                 </p>
@@ -224,7 +224,7 @@ export default function Hero() {
                   className="flex items-center justify-between rounded-2xl border border-line/70 bg-white/60 px-4 py-3 text-[0.95rem]"
                 >
                   <span>{what}</span>
-                  <span className="tnum font-semibold text-royal-700">{when}</span>
+                  <span className="tnum font-semibold text-royal-800">{when}</span>
                 </li>
               ))}
             </ul>

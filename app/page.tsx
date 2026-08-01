@@ -46,7 +46,7 @@ export default function HomePage() {
               Не нашли свой вопрос?{" "}
               <Link
                 href="/faq"
-                className="font-semibold text-royal-700 underline underline-offset-4"
+                className="font-semibold text-royal-800 underline underline-offset-4"
               >
                 Полный список вопросов
               </Link>{" "}
@@ -76,7 +76,7 @@ export default function HomePage() {
                   className="card card-lift group flex h-full flex-col p-7"
                 >
                   <span className="chip w-fit">{p.category}</span>
-                  <h3 className="mt-5 text-[1.16rem] font-bold leading-snug tracking-tight transition-colors group-hover:text-royal-700">
+                  <h3 className="mt-5 text-[1.16rem] font-bold leading-snug tracking-tight transition-colors group-hover:text-royal-800">
                     {p.title}
                   </h3>
                   <p className="mt-3 text-[0.93rem] leading-relaxed text-slate">

@@ -65,7 +65,7 @@ export default function CasesPage() {
                     {service && (
                       <Link
                         href={`/services/${service.slug}`}
-                        className="mt-6 inline-block font-semibold text-royal-700"
+                        className="mt-6 inline-block font-semibold text-royal-800"
                       >
                         Об услуге «{service.nav}» →
                       </Link>

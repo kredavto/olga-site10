@@ -105,7 +105,7 @@ export default async function ServicePage({ params }: Params) {
                   intensity={5}
                   className="card card-lift h-full overflow-hidden p-8"
                 >
-                  <span className="t-eyebrow text-royal-700">
+                  <span className="t-eyebrow text-royal-800">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-4 text-[1.24rem] font-bold leading-snug tracking-tight">
@@ -282,13 +282,13 @@ export default async function ServicePage({ params }: Params) {
                   className="card card-lift group flex h-full flex-col p-7"
                 >
                   <span className="t-eyebrow text-muted">{r.category}</span>
-                  <h3 className="mt-4 text-[1.16rem] font-bold leading-snug tracking-tight transition-colors group-hover:text-royal-700">
+                  <h3 className="mt-4 text-[1.16rem] font-bold leading-snug tracking-tight transition-colors group-hover:text-royal-800">
                     {r.h1}
                   </h3>
                   <p className="clamp-3 mt-3 text-[0.93rem] leading-relaxed text-slate">
                     {r.lead}
                   </p>
-                  <p className="tnum mt-auto pt-6 font-semibold text-royal-700">
+                  <p className="tnum mt-auto pt-6 font-semibold text-royal-800">
                     {r.priceFrom.toLocaleString("ru-RU")}–
                     {r.priceTo.toLocaleString("ru-RU")} ₽
                   </p>

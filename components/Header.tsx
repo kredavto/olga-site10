@@ -179,7 +179,7 @@ export default function Header() {
           <div className="flex items-center gap-2.5">
             <button
               onClick={() => setSearch(true)}
-              className="hidden h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-slate transition-colors hover:border-royal-300 hover:text-royal-700 lg:flex"
+              className="hidden h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-slate transition-colors hover:border-royal-300 hover:text-royal-800 lg:flex"
               aria-label="Поиск по сайту"
             >
               <SearchIcon />
@@ -187,7 +187,7 @@ export default function Header() {
 
             <a
               href={`tel:${site.phoneHref}`}
-              className="hidden text-[1.02rem] font-semibold tracking-tight text-graphite transition-colors hover:text-royal-700 md:block"
+              className="hidden text-[1.02rem] font-semibold tracking-tight text-graphite transition-colors hover:text-royal-800 md:block"
             >
               {site.phone}
             </a>
@@ -196,7 +196,7 @@ export default function Header() {
             <a
               href={`tel:${site.phoneHref}`}
               aria-label={`Позвонить ${site.phone}`}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-royal-700 md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-royal-800 md:hidden"
             >
               <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden>
                 <path
@@ -260,7 +260,7 @@ export default function Header() {
                                   href={`/services/${slug}`}
                                   className="group flex flex-col rounded-2xl px-3 py-2.5 transition-colors hover:bg-royal-50"
                                 >
-                                  <span className="font-semibold tracking-tight transition-colors group-hover:text-royal-700">
+                                  <span className="font-semibold tracking-tight transition-colors group-hover:text-royal-800">
                                     {s.nav}
                                   </span>
                                   <span className="text-[0.85rem] text-muted">
@@ -493,7 +493,7 @@ function MenuTrigger({
       onMouseEnter={onHover}
       onFocus={onHover}
       className={`flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[0.95rem] font-medium transition-colors ${
-        active ? "bg-royal-50 text-royal-700" : "text-slate hover:text-graphite"
+        active ? "bg-royal-50 text-royal-800" : "text-slate hover:text-graphite"
       }`}
       aria-expanded={active}
     >
@@ -528,7 +528,7 @@ function MegaSimple({
           <li key={l.href}>
             <Link
               href={l.href}
-              className="block rounded-2xl px-3 py-2.5 font-medium transition-colors hover:bg-royal-50 hover:text-royal-700"
+              className="block rounded-2xl px-3 py-2.5 font-medium transition-colors hover:bg-royal-50 hover:text-royal-800"
             >
               {l.label}
             </Link>

@@ -32,7 +32,7 @@ export default function SectionHeading({
           <Reveal>
             <p
               className={`t-eyebrow mb-5 ${
-                invert ? "text-white/45" : "text-royal-700"
+                invert ? "text-white/45" : "text-royal-800"
               }`}
             >
               {eyebrow}

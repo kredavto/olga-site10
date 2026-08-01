@@ -129,7 +129,7 @@ export default async function DoctorPage({ params }: Params) {
                       className="group flex items-center justify-between gap-4 rounded-2xl border border-line px-5 py-4 transition-colors hover:border-royal-300 hover:bg-royal-50"
                     >
                       <span>
-                        <span className="block font-semibold transition-colors group-hover:text-royal-700">
+                        <span className="block font-semibold transition-colors group-hover:text-royal-800">
                           {s.nav}
                         </span>
                         <span className="tnum mt-0.5 block text-[0.82rem] text-muted">
@@ -182,7 +182,7 @@ export default async function DoctorPage({ params }: Params) {
                     </dl>
                     <Link
                       href="/cases"
-                      className="mt-6 inline-block font-semibold text-royal-700"
+                      className="mt-6 inline-block font-semibold text-royal-800"
                     >
                       Смотреть до и после →
                     </Link>

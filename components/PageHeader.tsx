@@ -21,7 +21,7 @@ export default function PageHeader({
 }) {
   return (
     <section className="relative overflow-hidden pb-16 lg:pb-24">
-      <div className="absolute inset-0 bg-gradient-to-b from-pearl to-white" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-white/15" />
       <div className="mesh" />
       <div className="med-grid opacity-70" />
 
@@ -32,7 +32,7 @@ export default function PageHeader({
           <div>
             {eyebrow && (
               <Reveal>
-                <p className="t-eyebrow mb-5 text-royal-700">{eyebrow}</p>
+                <p className="t-eyebrow mb-5 text-royal-800">{eyebrow}</p>
               </Reveal>
             )}
             <SplitText
