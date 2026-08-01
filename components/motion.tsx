@@ -159,7 +159,7 @@ export function SplitText({
       {words.map((word, w) => (
         <span
           key={`${word}-${w}`}
-          className="inline-block overflow-hidden align-bottom"
+          className="inline-block overflow-hidden whitespace-nowrap align-bottom"
           aria-hidden
         >
           {Array.from(word).map((ch, c) => {

@@ -13,7 +13,7 @@
 | Стили | Tailwind CSS v4 + собственная дизайн-система в `app/globals.css` |
 | Анимация | Framer Motion, CSS-анимации, Canvas 2D |
 | Плавный скролл | Lenis |
-| Шрифты | Inter + Manrope через `next/font` (кириллица, variable, self-hosted) |
+| Шрифты | Inter (текст) + Playfair Display (крупные заголовки) + Manrope (мелкие заголовки) через `next/font`, кириллица, variable, self-hosted |
 
 ## Запуск
 
@@ -55,6 +55,10 @@ lib/
 - заголовки h1–h6 наследуют кнопочный синий `royal-600`; правило
   объявлено в слое `base`, поэтому на тёмных секциях утилита `text-white`
   по-прежнему выигрывает и заголовки там остаются белыми;
+- гарнитуры заголовков: `--font-display` — контрастная антиква Playfair
+  Display, применяется классами `.t-h1 / .t-h2 / .t-h3`;
+  `--font-display-alt` — гротеск Manrope, базовая гарнитура h1–h6 и,
+  соответственно, всех мелких заголовков карточек;
 - текст: `graphite / slate / muted`;
 - основной `royal-50…900` (#2563EB);
 - акценты `emerald-soft`, `beige`, `champagne`, `champagne-deep`;
