@@ -9,13 +9,13 @@
      `white` is the light surface token used by cards, glass and the header;
      it is a soft paper beige rather than pure #fff so the whole site reads
      warm. True white survives only where it sits on the dark sections. */
-  --color-white: #fff8f3;
-  --color-canvas: #f8c3c9;
-  --color-canvas-mid: #f9d2b2;
-  --color-canvas-end: #f6bfc6;
+  --color-white: #fffaf7;
+  --color-canvas: #fbe4e6;
+  --color-canvas-mid: #fceadb;
+  --color-canvas-end: #fae1e4;
   --color-pearl: rgba(255, 248, 243, 0.46);
-  --color-mist: #f6cfc4;
-  --color-line: #f2cfc6;
+  --color-mist: #f7dfd9;
+  --color-line: #f3ddd8;
   --color-graphite: #202124;
   --color-slate: #4b5158;
   --color-muted: #515763;
@@ -88,30 +88,30 @@ body {
   background:
     radial-gradient(
       38rem 26rem at 22% 34%,
-      rgba(250, 214, 178, 0.55),
+      rgba(252, 233, 214, 0.5),
       transparent 68%
     ),
     radial-gradient(
       34rem 22rem at 78% 58%,
-      rgba(249, 205, 170, 0.5),
+      rgba(252, 231, 212, 0.45),
       transparent 66%
     ),
     radial-gradient(
       30rem 20rem at 62% 22%,
-      rgba(252, 226, 214, 0.45),
+      rgba(253, 240, 234, 0.45),
       transparent 70%
     ),
     radial-gradient(
       28rem 18rem at 12% 76%,
-      rgba(252, 223, 210, 0.4),
+      rgba(253, 238, 232, 0.4),
       transparent 70%
     ),
     linear-gradient(
       180deg,
       var(--color-canvas) 0%,
-      #f9cbbe 26%,
+      #fbe6de 26%,
       var(--color-canvas-mid) 50%,
-      #f8cbc0 74%,
+      #fbe6df 74%,
       var(--color-canvas-end) 100%
     );
   background-attachment: fixed;
@@ -143,6 +143,19 @@ h6 {
   letter-spacing: -0.028em;
   line-height: 1.06;
   text-wrap: balance;
+}
+
+/* Headings take the button blue — declared inside Tailwind's `base` layer so
+   that utilities such as `text-white` still win on the dark sections. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-royal-600);
+  }
 }
 
 p {
@@ -391,7 +404,7 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.035;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -446,10 +459,10 @@ button {
 .text-shimmer {
   background: linear-gradient(
     100deg,
-    var(--color-graphite) 30%,
-    var(--color-royal-800) 45%,
-    #8c4258 55%,
-    var(--color-graphite) 70%
+    var(--color-royal-600) 30%,
+    var(--color-royal-900) 45%,
+    var(--color-royal-500) 55%,
+    var(--color-royal-600) 70%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -649,7 +662,7 @@ button {
   background: var(--color-pearl);
 }
 ::-webkit-scrollbar-thumb {
-  background: #e3aeb2;
+  background: #eec3c6;
   border-radius: 999px;
   border: 3px solid var(--color-pearl);
 }

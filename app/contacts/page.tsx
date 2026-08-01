@@ -87,7 +87,7 @@ export default function ContactsPage() {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(150deg,#fde3d8,#f9cfc6 55%,#f3b9c2)",
+                      "linear-gradient(150deg,#fdefe8,#fbe2dc 55%,#f6d3d8)",
                   }}
                 />
                 <svg
