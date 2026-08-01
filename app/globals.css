@@ -112,8 +112,9 @@ h6 {
   text-wrap: balance;
 }
 
-/* Headings take the button blue — declared inside Tailwind's `base` layer so
-   that utilities such as `text-white` still win on the dark sections. */
+/* Large section headings take the button blue; small card headings stay
+   black. Both live inside Tailwind's `base` layer so that utilities such as
+   `text-white` still win on the dark sections. */
 @layer base {
   h1,
   h2,
@@ -121,6 +122,12 @@ h6 {
   h4,
   h5,
   h6 {
+    color: var(--color-graphite);
+  }
+
+  .t-h1,
+  .t-h2,
+  .t-h3 {
     color: var(--color-royal-600);
   }
 }
