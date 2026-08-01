@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 export default function NotFound() {
   return (
     <section className="relative flex min-h-[80svh] items-center overflow-hidden pt-[136px]">
-      <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-white/15" />
+      <div className="absolute inset-0 bg-gradient-to-b from-pearl to-white" />
       <div className="mesh" />
       <div className="med-grid" />
 

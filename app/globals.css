@@ -5,17 +5,13 @@
    ============================================================ */
 
 @theme {
-  /* Neutrals — warm beige canvas.
-     `white` is the light surface token used by cards, glass and the header;
-     it is a soft paper beige rather than pure #fff so the whole site reads
-     warm. True white survives only where it sits on the dark sections. */
-  --color-white: #fffaf7;
-  --color-canvas: #fbe4e6;
-  --color-canvas-mid: #fceadb;
-  --color-canvas-end: #fae1e4;
-  --color-pearl: rgba(255, 248, 243, 0.46);
-  --color-mist: #f7dfd9;
-  --color-line: #f3ddd8;
+  /* Neutrals — white canvas. `white` is the surface token used by cards,
+     glass and the header; `pearl` is the alternating section tone. */
+  --color-white: #ffffff;
+  --color-canvas: #ffffff;
+  --color-pearl: #f7f8fa;
+  --color-mist: #eceef2;
+  --color-line: #e2e6ec;
   --color-graphite: #202124;
   --color-slate: #4b5158;
   --color-muted: #515763;
@@ -85,38 +81,7 @@ html.lenis body {
 }
 
 body {
-  background:
-    radial-gradient(
-      38rem 26rem at 22% 34%,
-      rgba(252, 233, 214, 0.5),
-      transparent 68%
-    ),
-    radial-gradient(
-      34rem 22rem at 78% 58%,
-      rgba(252, 231, 212, 0.45),
-      transparent 66%
-    ),
-    radial-gradient(
-      30rem 20rem at 62% 22%,
-      rgba(253, 240, 234, 0.45),
-      transparent 70%
-    ),
-    radial-gradient(
-      28rem 18rem at 12% 76%,
-      rgba(253, 238, 232, 0.4),
-      transparent 70%
-    ),
-    linear-gradient(
-      180deg,
-      var(--color-canvas) 0%,
-      #fbe6de 26%,
-      var(--color-canvas-mid) 50%,
-      #fbe6df 74%,
-      var(--color-canvas-end) 100%
-    );
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: var(--color-canvas);
   color: var(--color-graphite);
   font-family: var(--font-sans);
   font-size: 18px;
@@ -234,7 +199,7 @@ button {
   background: color-mix(in srgb, var(--color-white) 84%, transparent);
   backdrop-filter: blur(28px) saturate(1.15);
   -webkit-backdrop-filter: blur(28px) saturate(1.15);
-  border: 1px solid rgba(255, 253, 248, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   box-shadow: var(--shadow-lift);
 }
 
@@ -309,17 +274,17 @@ button {
   background:
     radial-gradient(
       52rem 32rem at 12% 8%,
-      rgba(37, 99, 235, 0.05),
+      rgba(37, 99, 235, 0.12),
       transparent 62%
     ),
     radial-gradient(
       40rem 30rem at 92% 22%,
-      rgba(79, 174, 146, 0.02),
+      rgba(79, 174, 146, 0.1),
       transparent 60%
     ),
     radial-gradient(
       44rem 34rem at 68% 96%,
-      rgba(255, 236, 220, 0.32),
+      rgba(216, 190, 138, 0.16),
       transparent 62%
     );
   filter: blur(6px);
@@ -344,8 +309,8 @@ button {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(37, 99, 235, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37, 99, 235, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(37, 99, 235, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.07) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(80% 60% at 50% 40%, #000 0%, transparent 78%);
   -webkit-mask-image: radial-gradient(
@@ -404,7 +369,7 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.03;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -662,7 +627,7 @@ button {
   background: var(--color-pearl);
 }
 ::-webkit-scrollbar-thumb {
-  background: #eec3c6;
+  background: #cdd4de;
   border-radius: 999px;
   border: 3px solid var(--color-pearl);
 }

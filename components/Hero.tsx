@@ -31,7 +31,7 @@ export default function Hero() {
       className="scanline relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-[136px] lg:pb-16"
     >
       {/* --- background stack --- */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/45 via-transparent to-white/35" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-pearl to-white" />
       <div className="mesh" />
       <div className="med-grid" />
       <HeroCanvas />
