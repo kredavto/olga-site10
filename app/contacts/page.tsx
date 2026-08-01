@@ -87,7 +87,7 @@ export default function ContactsPage() {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(150deg,#f3ede2,#e6ded0 55%,#d5cdbd)",
+                      "linear-gradient(150deg,#f9f0da,#efe2c4 55%,#e0d0aa)",
                   }}
                 />
                 <svg
@@ -112,7 +112,7 @@ export default function ContactsPage() {
                       y1={y}
                       x2="830"
                       y2={y - 30}
-                      stroke="#fbf7f0"
+                      stroke="#fffcf5"
                       strokeWidth="10"
                     />
                   ))}
@@ -123,7 +123,7 @@ export default function ContactsPage() {
                       y1="-20"
                       x2={x - 40}
                       y2="520"
-                      stroke="#fbf7f0"
+                      stroke="#fffcf5"
                       strokeWidth="8"
                     />
                   ))}
@@ -142,7 +142,7 @@ export default function ContactsPage() {
                       width="90"
                       height="60"
                       rx="8"
-                      fill="#fbf7f0"
+                      fill="#fffcf5"
                       opacity="0.65"
                     />
                   ))}

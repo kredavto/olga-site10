@@ -9,11 +9,11 @@
      `white` is the light surface token used by cards, glass and the header;
      it is a soft paper beige rather than pure #fff so the whole site reads
      warm. True white survives only where it sits on the dark sections. */
-  --color-white: #fcf9f4;
-  --color-canvas: #f6f0e6;
-  --color-pearl: #efe7da;
-  --color-mist: #e7ded0;
-  --color-line: #e2d8c8;
+  --color-white: #fffcf5;
+  --color-canvas: #fbf3e0;
+  --color-pearl: #f6ebd2;
+  --color-mist: #f0e3c6;
+  --color-line: #ecdfc3;
   --color-graphite: #202124;
   --color-slate: #4b5158;
   --color-muted: #5f6672;
@@ -263,17 +263,17 @@ button {
   background:
     radial-gradient(
       52rem 32rem at 12% 8%,
-      rgba(37, 99, 235, 0.1),
+      rgba(37, 99, 235, 0.085),
       transparent 62%
     ),
     radial-gradient(
       40rem 30rem at 92% 22%,
-      rgba(79, 174, 146, 0.06),
+      rgba(79, 174, 146, 0.035),
       transparent 60%
     ),
     radial-gradient(
       44rem 34rem at 68% 96%,
-      rgba(216, 190, 138, 0.26),
+      rgba(232, 198, 120, 0.34),
       transparent 62%
     );
   filter: blur(6px);
@@ -298,8 +298,8 @@ button {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(37, 99, 235, 0.075) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37, 99, 235, 0.075) 1px, transparent 1px);
+    linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(80% 60% at 50% 40%, #000 0%, transparent 78%);
   -webkit-mask-image: radial-gradient(
@@ -358,7 +358,7 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.016;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -616,7 +616,7 @@ button {
   background: var(--color-pearl);
 }
 ::-webkit-scrollbar-thumb {
-  background: #cfc3ae;
+  background: #d8c69c;
   border-radius: 999px;
   border: 3px solid var(--color-pearl);
 }
