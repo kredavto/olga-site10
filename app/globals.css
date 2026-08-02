@@ -28,11 +28,6 @@
   --color-royal-800: #1e42af;
   --color-royal-900: #1e3a8a;
 
-  /* Display ink — deep violet with a gold seam */
-  --color-violet-deep: #2e1065;
-  --color-violet: #4c1d95;
-  --color-gold-ink: #8a6420;
-
   /* Accents */
   --color-emerald-soft: #4fae92;
   --color-beige: #e7dccb;
@@ -67,15 +62,6 @@
 :root {
   --header-h: 76px;
   color-scheme: light;
-
-  --heading-ink: linear-gradient(
-    180deg,
-    var(--color-violet-deep) 0%,
-    var(--color-violet) 30%,
-    var(--color-gold-ink) 52%,
-    #5b21b6 72%,
-    var(--color-violet-deep) 100%
-  );
 }
 
 * {
@@ -142,21 +128,7 @@ h6 {
   .t-h1,
   .t-h2,
   .t-h3 {
-    color: var(--color-violet-deep);
-  }
-}
-
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-  .t-h1:not(.text-white),
-  .t-h2:not(.text-white),
-  .t-h3:not(.text-white),
-  .t-h1:not(.text-white) span,
-  .t-h2:not(.text-white) span,
-  .t-h3:not(.text-white) span {
-    background-image: var(--heading-ink);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--color-royal-600);
   }
 }
 
@@ -196,13 +168,13 @@ button {
 }
 
 .t-h1 {
-  font-size: clamp(2.5rem, 1.4rem + 4.6vw, 4.9rem);
+  font-size: clamp(2.35rem, 1.35rem + 4.2vw, 4.4rem);
 }
 .t-h2 {
-  font-size: clamp(2.1rem, 1.3rem + 2.8vw, 3.6rem);
+  font-size: clamp(1.95rem, 1.25rem + 2.5vw, 3.25rem);
 }
 .t-h3 {
-  font-size: clamp(1.7rem, 1.25rem + 1.4vw, 2.55rem);
+  font-size: clamp(1.6rem, 1.2rem + 1.3vw, 2.35rem);
 }
 .t-h4 {
   font-size: clamp(1.2rem, 1.08rem + 0.5vw, 1.5rem);
@@ -462,12 +434,25 @@ button {
   animation: dash-flow 12s linear infinite;
 }
 
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
 .text-shimmer {
-  background: var(--heading-ink);
-  background-size: 100% 100%;
+  background: linear-gradient(
+    100deg,
+    var(--color-royal-600) 30%,
+    var(--color-royal-900) 45%,
+    var(--color-royal-500) 55%,
+    var(--color-royal-600) 70%
+  );
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: shimmer 8s linear infinite;
 }
 
 /* ---------- Components ---------- */
