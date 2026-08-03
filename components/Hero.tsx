@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroCanvas from "./HeroCanvas";
-import HeroTooth from "./HeroTooth";
 import { Magnetic, SplitText, Counter } from "./motion";
 import { openBooking } from "@/lib/booking";
 import { site } from "@/lib/site";
@@ -35,30 +34,31 @@ export default function Hero() {
       {/* --- background stack --- */}
       {/* photograph first, then the scrims that make the type legible on it */}
       <Image
-        src="/media/hero-bg.jpeg"
+        src="/media/hero-bg.jpg"
         alt=""
         fill
         priority
         sizes="100vw"
         quality={90}
-        className="pointer-events-none object-cover"
+        className="pointer-events-none object-cover object-[24%_74%] lg:object-[50%_82%]"
         aria-hidden
       />
-      {/* the turning copy of the tooth goes under the scrims, so it is dimmed
-          exactly like the still frame it sits on */}
-      <HeroTooth layer="photo" />
+      {/* The frame is wide and its lit ridges sit along the bottom, so the
+          crop is pulled down: centred, a tall viewport showed only the dark
+          middle and the photograph read as a black field. On phones it is
+          pulled left as well — a 390px-wide crop of a 1.9:1 frame is a narrow
+          strip, and in the middle that strip is the dark valley between the
+          two ridges. */}
       {/* Light flat scrim — enough to hold the photograph together, little
-          enough to leave the tooth visible. */}
-      {/* heavier on phones: there the crop puts the bright crown right under
-          the paragraph, which runs the full width */}
-      <div className="pointer-events-none absolute inset-0 bg-[#040a18]/48 lg:bg-[#040a18]/35" />
+          enough to leave the picture visible. This shot is dark to begin
+          with, so it takes far less than the previous one. */}
+      <div className="pointer-events-none absolute inset-0 bg-[#040a18]/30 lg:bg-[#040a18]/18" />
       {/* The weight the type needs is put under the text column only, so the
           right half of the frame stays bright. */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040a18]/88 via-[#040a18]/55 via-45% to-transparent" />
       {/* No fade into the section below: a gradient tall enough to read as a
           transition also reached the figures and bleached them. The hero ends
           on a clean edge instead. */}
-      <HeroTooth layer="marks" />
       <div className="med-grid" />
       <HeroCanvas tone="dark" />
       <div className="noise" />

@@ -553,55 +553,6 @@ button {
   opacity: 0.055;
 }
 
-/* Stars along the tooth outline */
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0.04;
-    transform: scale(0.65);
-  }
-  50% {
-    opacity: 0.42;
-    transform: scale(1.1);
-  }
-}
-
-.star {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: twinkle var(--dur, 3.6s) var(--ease-soft) infinite;
-  animation-delay: var(--delay, 0s);
-}
-
-/* the blanket reduced-motion rule would freeze the stars on their dim frame */
-@media (prefers-reduced-motion: reduce) {
-  .star {
-    animation: none;
-    opacity: 0.3;
-  }
-}
-
-/* The tooth turns about its own vertical axis, like a piece on a turntable:
-   one revolution every two minutes. Not a spin in the plane of the frame —
-   that carried the tooth through upside down. */
-@keyframes spin-y {
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
-.spin-y {
-  animation: spin-y 120s linear infinite;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .spin-y {
-    animation: none;
-  }
-}
-
 /* ---------- Components ---------- */
 
 .btn {
