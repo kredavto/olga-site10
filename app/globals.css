@@ -130,6 +130,20 @@ h6 {
   .t-h3 {
     color: var(--color-royal-600);
   }
+
+  /* `color: inherit` on links and controls also belongs in the layer:
+     unlayered it outranks every `text-*` utility, and a link painted white
+     for a dark background would silently fall back to the inherited ink. */
+  a {
+    color: inherit;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    color: inherit;
+  }
 }
 
 p {
@@ -137,7 +151,6 @@ p {
 }
 
 a {
-  color: inherit;
   text-decoration: none;
 }
 
@@ -146,7 +159,6 @@ select,
 textarea,
 button {
   font: inherit;
-  color: inherit;
 }
 
 :focus-visible {
@@ -453,6 +465,89 @@ button {
   background-clip: text;
   color: transparent;
   animation: shimmer 8s linear infinite;
+}
+
+/* ---------- Dark scope ---------- */
+
+/* The first screen stands on a photograph, so the palette inside it flips to
+   the light end. Scoped rules sit after the components they override and
+   carry higher specificity, so nothing here needs !important. */
+
+.on-dark {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.on-dark .chip {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e6ecff;
+  border-color: rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.on-dark .chip-gold {
+  background: rgba(216, 190, 138, 0.16);
+  color: #f2e3c2;
+  border-color: rgba(216, 190, 138, 0.42);
+}
+
+.on-dark .btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.34);
+  color: #ffffff;
+}
+.on-dark .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 22px 50px -26px rgba(0, 0, 0, 0.8);
+}
+
+/* Blue ink would sink into the photograph — the gradient goes pale instead */
+.on-dark .text-shimmer {
+  background: linear-gradient(
+    100deg,
+    #ffffff 30%,
+    var(--color-royal-200) 45%,
+    #ffffff 55%,
+    #ffffff 70%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* A light island inside the dark scope (the booking panel keeps its own white
+   surface, so its type has to go back to the dark palette). */
+.on-dark .on-light {
+  color: var(--color-graphite);
+}
+/* denser than the default glass: milky white over a photo reads as dirty */
+.on-dark .on-light.glass {
+  background: color-mix(in srgb, var(--color-white) 94%, transparent);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.85);
+}
+.on-dark .on-light .btn-ghost {
+  background: color-mix(in srgb, var(--color-white) 68%, transparent);
+  border-color: var(--color-line);
+  color: var(--color-graphite);
+}
+.on-dark .on-light .btn-ghost:hover {
+  background: var(--color-white);
+  border-color: var(--color-royal-300);
+  box-shadow: var(--shadow-lift);
+}
+
+.on-dark .med-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+}
+
+.on-dark .noise {
+  mix-blend-mode: overlay;
+  opacity: 0.055;
 }
 
 /* ---------- Components ---------- */

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroCanvas from "./HeroCanvas";
@@ -28,18 +29,35 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="scanline relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-[136px] lg:pb-16"
+      className="on-dark scanline relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-[136px] lg:pb-16"
     >
       {/* --- background stack --- */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-pearl to-white" />
-      <div className="mesh" />
+      {/* photograph first, then the scrims that make the type legible on it */}
+      <Image
+        src="/media/hero-bg.jpeg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        quality={90}
+        className="pointer-events-none object-cover"
+        aria-hidden
+      />
+      {/* flat scrim: guarantees contrast even over the brightest part of the shot */}
+      <div className="pointer-events-none absolute inset-0 bg-[#040a18]/62" />
+      {/* extra weight under the text column, and a fade into the white section below */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040a18]/88 via-[#040a18]/55 to-transparent" />
+      {/* No fade into the section below: a gradient tall enough to read as a
+          transition also reached the figures and bleached them. The hero ends
+          on a clean edge instead. */}
       <div className="med-grid" />
-      <HeroCanvas />
+      <HeroCanvas tone="dark" />
       <div className="noise" />
 
-      {/* cinematic video slot — drop hero.mp4 into /public/media to enable */}
+      {/* cinematic video slot — drop hero.mp4 into /public/media to enable;
+          it plays over the photograph, under the scrims */}
       <video
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-1000 [&[data-ready='1']]:opacity-[0.22]"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-1000 [&[data-ready='1']]:opacity-[0.38]"
         autoPlay
         muted
         loop
@@ -57,9 +75,9 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 hidden lg:block"
         aria-hidden
       >
-        <div className="glass float-slow absolute bottom-[8%] left-[2%] h-36 w-52 rounded-[28px] opacity-45" />
-        <div className="glass float-slower absolute right-[4%] top-[12%] h-28 w-44 rounded-[24px] opacity-50" />
-        <div className="glass float-slow absolute bottom-[6%] right-[46%] h-20 w-20 rounded-[22px] opacity-40" />
+        <div className="glass-dark float-slow absolute bottom-[8%] left-[2%] h-36 w-52 rounded-[28px] opacity-70" />
+        <div className="glass-dark float-slower absolute right-[4%] top-[12%] h-28 w-44 rounded-[24px] opacity-70" />
+        <div className="glass-dark float-slow absolute bottom-[6%] right-[46%] h-20 w-20 rounded-[22px] opacity-60" />
       </motion.div>
 
       {/* AI data flow */}
@@ -71,8 +89,8 @@ export default function Hero() {
       >
         <defs>
           <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#2563EB" stopOpacity="0" />
-            <stop offset="50%" stopColor="#2563EB" stopOpacity="0.55" />
+            <stop offset="0%" stopColor="#93B4FD" stopOpacity="0" />
+            <stop offset="50%" stopColor="#BFD3FE" stopOpacity="0.5" />
             <stop offset="100%" stopColor="#D8BE8A" stopOpacity="0" />
           </linearGradient>
         </defs>
@@ -110,7 +128,7 @@ export default function Hero() {
               <span className="chip">Микроскоп Leica на каждом кресле</span>
             </motion.div>
 
-            <h1 className="t-h1 mt-7 font-bold">
+            <h1 className="t-h1 mt-7 font-bold text-white [text-shadow:0_2px_28px_rgba(4,10,24,0.55)]">
               <SplitText text="Имплантация зубов" delay={0.25} />
               <br />
               <motion.span
@@ -127,7 +145,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.9, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-              className="t-lead mt-7 max-w-xl text-slate"
+              className="t-lead mt-7 max-w-xl text-white/82"
             >
               3D-планирование, хирургический шаблон и временная коронка в день
               операции. Стоимость под ключ — 55 000–120 000 ₽ вместе с коронкой,
@@ -170,7 +188,7 @@ export default function Hero() {
 
               <a
                 href={`tel:${site.phoneHref}`}
-                className="ml-1 hidden text-[1.05rem] font-semibold tracking-tight transition-colors hover:text-royal-800 sm:block"
+                className="ml-1 hidden text-[1.05rem] font-semibold tracking-tight text-white transition-colors hover:text-royal-200 sm:block"
               >
                 {site.phone}
               </a>
@@ -184,8 +202,10 @@ export default function Hero() {
             >
               {facts.map((f) => (
                 <div key={f.label}>
-                  <p className="t-h4 font-bold tracking-tight">{f.value}</p>
-                  <p className="mt-1.5 text-[0.86rem] leading-snug text-muted">
+                  <p className="t-h4 font-bold tracking-tight text-white">
+                    {f.value}
+                  </p>
+                  <p className="mt-1.5 text-[0.86rem] leading-snug text-white/72">
                     {f.label}
                   </p>
                 </div>
@@ -198,7 +218,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="glass glass-refract hairline relative overflow-hidden rounded-[30px] p-7 lg:p-8"
+            className="on-light glass glass-refract hairline relative overflow-hidden rounded-[30px] p-7 lg:p-8"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -251,16 +271,18 @@ export default function Hero() {
         </div>
       </motion.div>
 
+      {/* anchored right, not centred: on tall screens a centred cue lands on
+          top of the fourth figure in the stats row */}
       <Link
         href="#trust"
         aria-label="К следующему разделу"
-        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted lg:flex"
+        className="absolute bottom-8 right-[4%] z-10 hidden flex-col items-center gap-2 text-white/70 transition-colors hover:text-white lg:flex"
       >
         <span className="text-[0.72rem] uppercase tracking-[0.2em]">Листайте</span>
         <motion.span
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          className="block h-9 w-[1px] bg-gradient-to-b from-royal-600/60 to-transparent"
+          className="block h-9 w-[1px] bg-gradient-to-b from-white/70 to-transparent"
         />
       </Link>
     </section>

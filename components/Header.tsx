@@ -97,6 +97,10 @@ export default function Header() {
         .slice(0, 7)
     : index.slice(0, 6);
 
+  /** At the top of the home page the header floats over the dark hero photo,
+   *  so its ink has to flip to white until the user scrolls. */
+  const overHero = pathname === "/" && !scrolled && !open;
+
   const hover = (menu: typeof open) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setOpen(menu);
@@ -141,7 +145,7 @@ export default function Header() {
 
         <div className="shell flex h-[76px] items-center justify-between gap-6">
           <Link href="/" aria-label="AURUM — на главную">
-            <Logo />
+            <Logo invert={overHero} />
           </Link>
 
           <nav className="hidden items-center gap-1 xl:flex" aria-label="Основная навигация">
@@ -149,27 +153,38 @@ export default function Header() {
               label="Услуги"
               active={open === "services"}
               onHover={() => hover("services")}
+              light={overHero}
             />
             <MenuTrigger
               label="Клиника"
               active={open === "clinic"}
               onHover={() => hover("clinic")}
+              light={overHero}
             />
             <MenuTrigger
               label="Пациентам"
               active={open === "info"}
               onHover={() => hover("info")}
+              light={overHero}
             />
             <Link
               href="/prices"
-              className="rounded-full px-4 py-2.5 text-[0.95rem] font-medium text-slate transition-colors hover:text-graphite"
+              className={`rounded-full px-4 py-2.5 text-[0.95rem] font-medium transition-colors ${
+                overHero
+                  ? "text-white/85 hover:text-white"
+                  : "text-slate hover:text-graphite"
+              }`}
               onMouseEnter={() => hover(null)}
             >
               Цены
             </Link>
             <Link
               href="/contacts"
-              className="rounded-full px-4 py-2.5 text-[0.95rem] font-medium text-slate transition-colors hover:text-graphite"
+              className={`rounded-full px-4 py-2.5 text-[0.95rem] font-medium transition-colors ${
+                overHero
+                  ? "text-white/85 hover:text-white"
+                  : "text-slate hover:text-graphite"
+              }`}
               onMouseEnter={() => hover(null)}
             >
               Контакты
@@ -179,7 +194,11 @@ export default function Header() {
           <div className="flex items-center gap-2.5">
             <button
               onClick={() => setSearch(true)}
-              className="hidden h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-slate transition-colors hover:border-royal-300 hover:text-royal-800 lg:flex"
+              className={`hidden h-11 w-11 items-center justify-center rounded-full border transition-colors lg:flex ${
+                overHero
+                  ? "border-white/30 bg-white/10 text-white hover:border-white/60"
+                  : "border-line bg-white/70 text-slate hover:border-royal-300 hover:text-royal-800"
+              }`}
               aria-label="Поиск по сайту"
             >
               <SearchIcon />
@@ -187,7 +206,11 @@ export default function Header() {
 
             <a
               href={`tel:${site.phoneHref}`}
-              className="hidden text-[1.02rem] font-semibold tracking-tight text-graphite transition-colors hover:text-royal-800 md:block"
+              className={`hidden text-[1.02rem] font-semibold tracking-tight transition-colors md:block ${
+                overHero
+                  ? "text-white hover:text-royal-200"
+                  : "text-graphite hover:text-royal-800"
+              }`}
             >
               {site.phone}
             </a>
@@ -196,7 +219,11 @@ export default function Header() {
             <a
               href={`tel:${site.phoneHref}`}
               aria-label={`Позвонить ${site.phone}`}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 text-royal-800 md:hidden"
+              className={`flex h-11 w-11 items-center justify-center rounded-full border md:hidden ${
+                overHero
+                  ? "border-white/30 bg-white/10 text-white"
+                  : "border-line bg-white/70 text-royal-800"
+              }`}
             >
               <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden>
                 <path
@@ -220,14 +247,24 @@ export default function Header() {
             </Magnetic>
 
             <button
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white/70 xl:hidden"
+              className={`flex h-11 w-11 items-center justify-center rounded-full border xl:hidden ${
+                overHero
+                  ? "border-white/30 bg-white/10"
+                  : "border-line bg-white/70"
+              }`}
               onClick={() => setMobile(true)}
               aria-label="Открыть меню"
             >
               <span className="flex flex-col gap-[5px]">
-                <span className="block h-[1.5px] w-5 bg-graphite" />
-                <span className="block h-[1.5px] w-5 bg-graphite" />
-                <span className="block h-[1.5px] w-3.5 bg-graphite" />
+                <span
+                  className={`block h-[1.5px] w-5 ${overHero ? "bg-white" : "bg-graphite"}`}
+                />
+                <span
+                  className={`block h-[1.5px] w-5 ${overHero ? "bg-white" : "bg-graphite"}`}
+                />
+                <span
+                  className={`block h-[1.5px] w-3.5 ${overHero ? "bg-white" : "bg-graphite"}`}
+                />
               </span>
             </button>
           </div>
@@ -483,17 +520,23 @@ function MenuTrigger({
   label,
   active,
   onHover,
+  light = false,
 }: {
   label: string;
   active: boolean;
   onHover: () => void;
+  light?: boolean;
 }) {
   return (
     <button
       onMouseEnter={onHover}
       onFocus={onHover}
       className={`flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[0.95rem] font-medium transition-colors ${
-        active ? "bg-royal-50 text-royal-800" : "text-slate hover:text-graphite"
+        active
+          ? "bg-royal-50 text-royal-800"
+          : light
+            ? "text-white/85 hover:text-white"
+            : "text-slate hover:text-graphite"
       }`}
       aria-expanded={active}
     >

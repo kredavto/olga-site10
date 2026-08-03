@@ -8,7 +8,12 @@ type P = { x: number; y: number; vx: number; vy: number; r: number; a: number; g
  * Ambient light field behind the hero: drifting luminous particles that
  * lean away from the pointer, plus faint connecting "data" lines.
  */
-export default function HeroCanvas() {
+export default function HeroCanvas({
+  tone = "light",
+}: {
+  /** "dark" — the hero stands on a photograph, so the field glows white */
+  tone?: "light" | "dark";
+}) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -18,6 +23,12 @@ export default function HeroCanvas() {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    const dark = tone === "dark";
+    const dot = dark ? "255,255,255" : "37,99,235";
+    const goldDot = dark ? "240,214,160" : "216,190,138";
+    const link = dark ? "191,211,254" : "37,99,235";
+    const linkAlpha = dark ? 0.16 : 0.09;
 
     let w = 0;
     let h = 0;
@@ -64,7 +75,7 @@ export default function HeroCanvas() {
           const b = particles[j];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
           if (d < 132) {
-            ctx.strokeStyle = `rgba(37,99,235,${0.09 * (1 - d / 132)})`;
+            ctx.strokeStyle = `rgba(${link},${linkAlpha * (1 - d / 132)})`;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -94,8 +105,8 @@ export default function HeroCanvas() {
 
         ctx.beginPath();
         ctx.fillStyle = p.gold
-          ? `rgba(216,190,138,${p.a})`
-          : `rgba(37,99,235,${p.a})`;
+          ? `rgba(${goldDot},${p.a})`
+          : `rgba(${dot},${p.a})`;
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
       }
@@ -113,7 +124,7 @@ export default function HeroCanvas() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", move);
     };
-  }, []);
+  }, [tone]);
 
   return (
     <canvas
