@@ -16,7 +16,21 @@ const TOOTH_D =
 
 type Star = { x: number; y: number; r: number; delay: number; dur: number };
 
-export default function HeroTooth() {
+/**
+ * Overlay that makes the tooth in the hero photograph turn on the spot and
+ * puts a ring of faint stars on its outline.
+ *
+ * It renders in two passes because the two halves belong on opposite sides of
+ * the hero's scrims: `photo` is the rotating copy of the shot and has to be
+ * dimmed by them exactly like the still frame underneath, while `marks` (the
+ * glow and the stars) belongs on top of them. Both passes run the same
+ * animation and mount together, so they stay in phase.
+ */
+export default function HeroTooth({
+  layer = "marks",
+}: {
+  layer?: "photo" | "marks";
+}) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const [box, setBox] = useState({ w: 0, h: 0 });
@@ -56,7 +70,7 @@ export default function HeroTooth() {
       out.push({
         x: 50 + (pt.x - 50) * push,
         y: 80 + (pt.y - 80) * push,
-        r: 0.5 + Math.random() * 1.35,
+        r: 0.35 + Math.random() * 0.85,
         delay: Math.random() * 5,
         dur: 2.8 + Math.random() * 3.4,
       });
@@ -64,10 +78,25 @@ export default function HeroTooth() {
     setStars(out);
   }, []);
 
-  const style = useMemo(
+  const frame = useMemo(
     () => ({ width: box.w || undefined, height: box.h || undefined }),
     [box]
   );
+
+  /** Feathered disc around the tooth, in the frame's own pixels. A circle
+   *  centred on the axis is invariant under the rotation, so the masked copy
+   *  never slides out from under its own edge. */
+  const disc = useMemo(() => {
+    const r = box.h * 0.4;
+    if (!r) return undefined;
+    return `radial-gradient(circle ${r}px at ${box.w * TOOTH.cx}px ${
+      box.h * TOOTH.cy
+    }px, #000 0 ${r * 0.62}px, transparent ${r}px)`;
+  }, [box]);
+
+  const spin = {
+    transformOrigin: `${TOOTH.cx * 100}% ${TOOTH.cy * 100}%`,
+  };
 
   return (
     // Below lg the crop blows the tooth up past the viewport: the outline
@@ -79,72 +108,81 @@ export default function HeroTooth() {
     >
       <div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-        style={style}
+        style={frame}
       >
-        {/* soft light coming off the tooth */}
-        <div
-          className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full blur-[42px]"
-          style={{
-            left: `${TOOTH.cx * 100}%`,
-            top: `${TOOTH.cy * 100}%`,
-            width: `${TOOTH.w * 260}%`,
-            height: `${TOOTH.h * 175}%`,
-            background:
-              "radial-gradient(closest-side, rgba(125,196,255,0.38), rgba(80,150,240,0.16) 52%, transparent 76%)",
-          }}
-        />
-
-        <svg
-          className="absolute -translate-x-1/2 -translate-y-1/2 overflow-visible"
-          style={{
-            left: `${TOOTH.cx * 100}%`,
-            top: `${TOOTH.cy * 100}%`,
-            width: `${TOOTH.w * 100}%`,
-            height: `${TOOTH.h * 100}%`,
-          }}
-          viewBox="0 0 100 160"
-          preserveAspectRatio="none"
-          fill="none"
-        >
-          <defs>
-            <radialGradient id="tooth-core" cx="50%" cy="45%" r="62%">
-              <stop offset="0%" stopColor="#bfe1ff" stopOpacity="0.3" />
-              <stop offset="70%" stopColor="#5aa6f5" stopOpacity="0.12" />
-              <stop offset="100%" stopColor="#5aa6f5" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-
-          {/* measured, never painted */}
-          <path ref={pathRef} d={TOOTH_D} stroke="none" fill="none" />
-
-          <path d={TOOTH_D} fill="url(#tooth-core)" />
-          <path
-            d={TOOTH_D}
-            stroke="rgba(170,215,255,0.34)"
-            strokeWidth="0.8"
-            vectorEffect="non-scaling-stroke"
-          />
-
-          {/* The viewBox is stretched to the tooth's proportions, so the dots
-              are drawn as ellipses that come out round on screen. */}
-          {stars.map((s, i) => (
-            <ellipse
-              key={i}
-              className="star"
-              cx={s.x}
-              cy={s.y}
-              rx={s.r * 0.85}
-              ry={s.r}
-              fill={i % 7 === 0 ? "#ffffff" : "#9ed2ff"}
-              style={
-                {
-                  "--delay": `${s.delay}s`,
-                  "--dur": `${s.dur}s`,
-                } as React.CSSProperties
-              }
+        {layer === "photo" ? (
+          <div className="spin-slow absolute inset-0" style={spin}>
+            {box.h > 0 && (
+              <img
+                src="/media/hero-bg.jpeg"
+                alt=""
+                className="h-full w-full"
+                style={{ maskImage: disc, WebkitMaskImage: disc }}
+              />
+            )}
+          </div>
+        ) : (
+          <>
+            {/* soft light coming off the tooth */}
+            <div
+              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full blur-[42px]"
+              style={{
+                left: `${TOOTH.cx * 100}%`,
+                top: `${TOOTH.cy * 100}%`,
+                width: `${TOOTH.w * 260}%`,
+                height: `${TOOTH.h * 175}%`,
+                background:
+                  "radial-gradient(closest-side, rgba(125,196,255,0.3), rgba(80,150,240,0.13) 52%, transparent 76%)",
+              }}
             />
-          ))}
-        </svg>
+
+            {/* the outline has to travel with the tooth it traces */}
+            <div className="spin-slow absolute inset-0" style={spin}>
+              <svg
+                className="absolute -translate-x-1/2 -translate-y-1/2 overflow-visible"
+                style={{
+                  left: `${TOOTH.cx * 100}%`,
+                  top: `${TOOTH.cy * 100}%`,
+                  width: `${TOOTH.w * 100}%`,
+                  height: `${TOOTH.h * 100}%`,
+                }}
+                viewBox="0 0 100 160"
+                preserveAspectRatio="none"
+                fill="none"
+              >
+                {/* measured, never painted */}
+                <path ref={pathRef} d={TOOTH_D} stroke="none" fill="none" />
+
+                <path
+                  d={TOOTH_D}
+                  stroke="rgba(170,215,255,0.14)"
+                  strokeWidth="0.7"
+                  vectorEffect="non-scaling-stroke"
+                />
+
+                {/* The viewBox is stretched to the tooth's proportions, so the
+                    dots are drawn as ellipses that come out round on screen. */}
+                {stars.map((s, i) => (
+                  <ellipse
+                    key={i}
+                    className="star"
+                    cx={s.x}
+                    cy={s.y}
+                    rx={s.r * 0.85}
+                    ry={s.r}
+                    fill={i % 7 === 0 ? "#ffffff" : "#9ed2ff"}
+                    style={
+                      {
+                        "--delay": `${s.delay}s`,
+                        "--dur": `${s.dur}s`,
+                      } as React.CSSProperties
+                    }
+                  />
+                ))}
+              </svg>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

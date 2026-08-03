@@ -44,6 +44,9 @@ export default function Hero() {
         className="pointer-events-none object-cover"
         aria-hidden
       />
+      {/* the turning copy of the tooth goes under the scrims, so it is dimmed
+          exactly like the still frame it sits on */}
+      <HeroTooth layer="photo" />
       {/* Light flat scrim — enough to hold the photograph together, little
           enough to leave the tooth visible. */}
       {/* heavier on phones: there the crop puts the bright crown right under
@@ -55,7 +58,7 @@ export default function Hero() {
       {/* No fade into the section below: a gradient tall enough to read as a
           transition also reached the figures and bleached them. The hero ends
           on a clean edge instead. */}
-      <HeroTooth />
+      <HeroTooth layer="marks" />
       <div className="med-grid" />
       <HeroCanvas tone="dark" />
       <div className="noise" />
@@ -224,12 +227,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="on-light glass glass-refract hairline relative overflow-hidden rounded-[30px] p-7 lg:p-8"
+            className="panel-dark glass-refract hairline relative overflow-hidden rounded-[30px] p-7 lg:ml-8 lg:p-8 xl:ml-14"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="t-eyebrow text-royal-800">Свободные окна</p>
-                <p className="mt-2 text-[1.32rem] font-bold leading-tight">
+                <p className="t-eyebrow text-royal-200">Свободные окна</p>
+                <p className="mt-2 text-[1.32rem] font-bold leading-tight text-white">
                   Ближайшая консультация — сегодня
                 </p>
               </div>
@@ -247,10 +250,10 @@ export default function Hero() {
               ].map(([what, when]) => (
                 <li
                   key={what}
-                  className="flex items-center justify-between rounded-2xl border border-line/70 bg-white/60 px-4 py-3 text-[0.95rem]"
+                  className="flex items-center justify-between rounded-2xl border border-white/12 bg-white/[0.07] px-4 py-3 text-[0.95rem] text-white/88"
                 >
                   <span>{what}</span>
-                  <span className="tnum font-semibold text-royal-800">{when}</span>
+                  <span className="tnum font-semibold text-royal-200">{when}</span>
                 </li>
               ))}
             </ul>
@@ -269,8 +272,8 @@ export default function Hero() {
               Позвонить {site.phone}
             </a>
 
-            <p className="mt-5 flex items-baseline gap-2 text-[0.84rem] text-muted">
-              <Counter to={site.stats.reviews} className="font-semibold text-graphite" />
+            <p className="mt-5 flex items-baseline gap-2 text-[0.84rem] text-white/68">
+              <Counter to={site.stats.reviews} className="font-semibold text-white" />
               отзывов, средняя оценка {site.stats.rating}
             </p>
           </motion.aside>

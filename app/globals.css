@@ -511,16 +511,25 @@ button {
   animation: none;
 }
 
-/* A light island inside the dark scope (the booking panel keeps its own white
-   surface, so its type has to go back to the dark palette). */
+/* A light island inside the dark scope: for a panel that keeps its own white
+   surface, the type has to go back to the dark palette. */
 .on-dark .on-light {
   color: var(--color-graphite);
 }
-/* denser than the default glass: milky white over a photo reads as dirty */
 .on-dark .on-light.glass {
   background: color-mix(in srgb, var(--color-white) 94%, transparent);
   border-color: rgba(255, 255, 255, 0.55);
   box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.85);
+}
+
+/* Smoked panel: dark enough to sit apart from the photograph, translucent
+   enough to keep the glow behind it. */
+.panel-dark {
+  background: rgba(9, 16, 32, 0.62);
+  backdrop-filter: blur(26px) saturate(1.35);
+  -webkit-backdrop-filter: blur(26px) saturate(1.35);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.9);
 }
 .on-dark .on-light .btn-ghost {
   background: color-mix(in srgb, var(--color-white) 68%, transparent);
@@ -548,12 +557,12 @@ button {
 @keyframes twinkle {
   0%,
   100% {
-    opacity: 0.12;
-    transform: scale(0.7);
+    opacity: 0.04;
+    transform: scale(0.65);
   }
   50% {
-    opacity: 1;
-    transform: scale(1.25);
+    opacity: 0.42;
+    transform: scale(1.1);
   }
 }
 
@@ -568,7 +577,25 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .star {
     animation: none;
-    opacity: 0.85;
+    opacity: 0.3;
+  }
+}
+
+/* One turn every four minutes — visible only if you watch for it */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 240s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin-slow {
+    animation: none;
   }
 }
 
