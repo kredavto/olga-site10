@@ -33,6 +33,23 @@ export default function Hero() {
     >
       {/* --- background stack --- */}
       {/* photograph first, then the scrims that make the type legible on it */}
+      {/* Backdrop: the same shot blown up and blurred out of legibility. It
+          only exists to fill what the scaled-down frame above leaves bare —
+          on its own the letterbox would be a flat band with a visible seam. */}
+      <Image
+        src="/media/hero-bg.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        quality={60}
+        className="pointer-events-none scale-110 object-cover object-[50%_78%] blur-[38px]"
+        aria-hidden
+      />
+      {/* The photograph itself, scaled down so the whole frame is in view
+          instead of a crop of it. Below lg it stays cropped: a 1.9:1 frame
+          fitted into a phone screen is a 200px strip in the middle of the
+          page, which reads as a banner rather than a background. */}
       <Image
         src="/media/hero-bg.jpg"
         alt=""
@@ -40,15 +57,12 @@ export default function Hero() {
         priority
         sizes="100vw"
         quality={90}
-        className="pointer-events-none object-cover object-[24%_74%] lg:object-[50%_82%]"
+        className="pointer-events-none object-cover object-[24%_74%] lg:object-contain lg:object-bottom"
         aria-hidden
       />
-      {/* The frame is wide and its lit ridges sit along the bottom, so the
-          crop is pulled down: centred, a tall viewport showed only the dark
-          middle and the photograph read as a black field. On phones it is
-          pulled left as well — a 390px-wide crop of a 1.9:1 frame is a narrow
-          strip, and in the middle that strip is the dark valley between the
-          two ridges. */}
+      {/* On phones the crop is pulled left and down: centred, the strip it
+          takes is the dark valley between the two lit ridges, and the
+          photograph read as a black field. */}
       {/* Light flat scrim — enough to hold the photograph together, little
           enough to leave the picture visible. This shot is dark to begin
           with, so it takes far less than the previous one. */}
