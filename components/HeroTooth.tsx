@@ -16,6 +16,14 @@ const TOOTH_D =
 
 type Star = { x: number; y: number; r: number; delay: number; dur: number };
 
+/** The outline again, this time as a feathered stencil that cuts the tooth
+ *  out of the photograph. The viewBox is padded so the blur has room; its
+ *  centre still falls on (50, 80), so the stencil lines up with the drawn
+ *  outline when both are centred on the tooth. */
+const TOOTH_STENCIL = `url("data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-16 -16 132 192" preserveAspectRatio="none"><filter id="f" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="5"/></filter><path d="${TOOTH_D}" fill="#000" filter="url(#f)"/></svg>`
+)}")`;
+
 /**
  * Overlay that makes the tooth in the hero photograph turn on the spot and
  * puts a ring of faint stars on its outline.
@@ -83,20 +91,47 @@ export default function HeroTooth({
     [box]
   );
 
-  /** Feathered disc around the tooth, in the frame's own pixels. A circle
-   *  centred on the axis is invariant under the rotation, so the masked copy
-   *  never slides out from under its own edge. */
-  const disc = useMemo(() => {
-    const r = box.h * 0.4;
-    if (!r) return undefined;
-    return `radial-gradient(circle ${r}px at ${box.w * TOOTH.cx}px ${
+  /** Feathered ellipse over the tooth, in the frame's own pixels. It carries
+   *  the patch that hides the standing tooth, so it is only a little wider
+   *  than the tooth itself — the web of filaments around it survives. */
+  const patchMask = useMemo(() => {
+    const rx = box.w * TOOTH.w * 1.15;
+    const ry = box.h * TOOTH.h * 0.95;
+    if (!rx || !ry) return undefined;
+    return `radial-gradient(ellipse ${rx}px ${ry}px at ${box.w * TOOTH.cx}px ${
       box.h * TOOTH.cy
-    }px, #000 0 ${r * 0.62}px, transparent ${r}px)`;
+    }px, #000 0 58%, transparent 100%)`;
   }, [box]);
 
-  const spin = {
-    transformOrigin: `${TOOTH.cx * 100}% ${TOOTH.cy * 100}%`,
-  };
+  /** The stencil sized and placed onto the frame. 132/100 and 192/160 undo the
+   *  padding in its viewBox, so the cut-out lands on the tooth. */
+  const stencil = useMemo(() => {
+    const w = box.w * TOOTH.w * 1.32;
+    const h = box.h * TOOTH.h * 1.2;
+    if (!w || !h) return undefined;
+    return {
+      maskImage: TOOTH_STENCIL,
+      WebkitMaskImage: TOOTH_STENCIL,
+      maskRepeat: "no-repeat",
+      WebkitMaskRepeat: "no-repeat",
+      maskSize: `${w}px ${h}px`,
+      WebkitMaskSize: `${w}px ${h}px`,
+      maskPosition: `${box.w * TOOTH.cx - w / 2}px ${
+        box.h * TOOTH.cy - h / 2
+      }px`,
+      WebkitMaskPosition: `${box.w * TOOTH.cx - w / 2}px ${
+        box.h * TOOTH.cy - h / 2
+      }px`,
+    } as React.CSSProperties;
+  }, [box]);
+
+  const axis = `${TOOTH.cx * 100}% ${TOOTH.cy * 100}%`;
+  const spin = { transformOrigin: axis };
+  /** Both passes share these, or the two halves would turn out of step */
+  const stage = {
+    perspective: "1500px",
+    perspectiveOrigin: axis,
+  } as React.CSSProperties;
 
   return (
     // Below lg the crop blows the tooth up past the viewport: the outline
@@ -108,19 +143,51 @@ export default function HeroTooth({
     >
       <div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-        style={frame}
+        style={{ ...frame, ...stage }}
       >
         {layer === "photo" ? (
-          <div className="spin-slow absolute inset-0" style={spin}>
-            {box.h > 0 && (
-              <img
-                src="/media/hero-bg.jpeg"
-                alt=""
-                className="h-full w-full"
-                style={{ maskImage: disc, WebkitMaskImage: disc }}
-              />
-            )}
-          </div>
+          box.h > 0 && (
+            <>
+              {/* The standing tooth has to go, or it would show through
+                  whenever the turning cut-out is edge-on and narrow. It is
+                  patched with background borrowed from the right of the
+                  frame — blurred, so the borrowed bokeh reads as depth. */}
+              <div
+                className="absolute inset-0 overflow-hidden"
+                style={{ maskImage: patchMask, WebkitMaskImage: patchMask }}
+              >
+                <img
+                  src="/media/hero-bg.jpeg"
+                  alt=""
+                  className="h-full w-full blur-[7px]"
+                  style={{ transform: `translateX(${-box.w * 0.3}px)` }}
+                />
+              </div>
+
+              {/* The tooth itself, cut out and turned. Two faces: the front
+                  hides at half past, and the mirrored back takes over — the
+                  tooth is near enough symmetric for the swap to pass. */}
+              <div className="spin-y absolute inset-0" style={spin}>
+                <img
+                  src="/media/hero-bg.jpeg"
+                  alt=""
+                  className="absolute inset-0 h-full w-full"
+                  style={{ ...stencil, backfaceVisibility: "hidden" }}
+                />
+                <img
+                  src="/media/hero-bg.jpeg"
+                  alt=""
+                  className="absolute inset-0 h-full w-full"
+                  style={{
+                    ...stencil,
+                    backfaceVisibility: "hidden",
+                    transform: "rotateY(180deg)",
+                    transformOrigin: axis,
+                  }}
+                />
+              </div>
+            </>
+          )
         ) : (
           <>
             {/* soft light coming off the tooth */}
@@ -137,7 +204,7 @@ export default function HeroTooth({
             />
 
             {/* the outline has to travel with the tooth it traces */}
-            <div className="spin-slow absolute inset-0" style={spin}>
+            <div className="spin-y absolute inset-0" style={spin}>
               <svg
                 className="absolute -translate-x-1/2 -translate-y-1/2 overflow-visible"
                 style={{

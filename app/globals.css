@@ -525,7 +525,7 @@ button {
 /* Smoked panel: dark enough to sit apart from the photograph, translucent
    enough to keep the glow behind it. */
 .panel-dark {
-  background: rgba(9, 16, 32, 0.62);
+  background: rgba(24, 38, 66, 0.55);
   backdrop-filter: blur(26px) saturate(1.35);
   -webkit-backdrop-filter: blur(26px) saturate(1.35);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -581,20 +581,23 @@ button {
   }
 }
 
-/* One turn every four minutes — visible only if you watch for it */
-@keyframes spin-slow {
+/* The tooth turns about its own vertical axis, like a piece on a turntable:
+   one revolution every two minutes. Not a spin in the plane of the frame —
+   that carried the tooth through upside down. */
+@keyframes spin-y {
   to {
-    transform: rotate(360deg);
+    transform: rotateY(360deg);
   }
 }
 
-.spin-slow {
-  animation: spin-slow 240s linear infinite;
+.spin-y {
+  animation: spin-y 120s linear infinite;
+  transform-style: preserve-3d;
   will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spin-slow {
+  .spin-y {
     animation: none;
   }
 }
