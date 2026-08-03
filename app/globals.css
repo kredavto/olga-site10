@@ -502,19 +502,13 @@ button {
   box-shadow: 0 22px 50px -26px rgba(0, 0, 0, 0.8);
 }
 
-/* Blue ink would sink into the photograph — the gradient goes pale instead */
+/* Blue ink would sink into the photograph, and the travelling highlight read
+   as flicker over a busy background — the line is plain white here. */
 .on-dark .text-shimmer {
-  background: linear-gradient(
-    100deg,
-    #ffffff 30%,
-    var(--color-royal-200) 45%,
-    #ffffff 55%,
-    #ffffff 70%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background: none;
+  -webkit-text-fill-color: #ffffff;
+  color: #ffffff;
+  animation: none;
 }
 
 /* A light island inside the dark scope (the booking panel keeps its own white
@@ -548,6 +542,34 @@ button {
 .on-dark .noise {
   mix-blend-mode: overlay;
   opacity: 0.055;
+}
+
+/* Stars along the tooth outline */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+.star {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: twinkle var(--dur, 3.6s) var(--ease-soft) infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* the blanket reduced-motion rule would freeze the stars on their dim frame */
+@media (prefers-reduced-motion: reduce) {
+  .star {
+    animation: none;
+    opacity: 0.85;
+  }
 }
 
 /* ---------- Components ---------- */

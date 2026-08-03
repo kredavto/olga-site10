@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroCanvas from "./HeroCanvas";
+import HeroTooth from "./HeroTooth";
 import { Magnetic, SplitText, Counter } from "./motion";
 import { openBooking } from "@/lib/booking";
 import { site } from "@/lib/site";
@@ -29,7 +30,7 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="on-dark scanline relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-[136px] lg:pb-16"
+      className="on-dark relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-[136px] lg:pb-16"
     >
       {/* --- background stack --- */}
       {/* photograph first, then the scrims that make the type legible on it */}
@@ -43,13 +44,18 @@ export default function Hero() {
         className="pointer-events-none object-cover"
         aria-hidden
       />
-      {/* flat scrim: guarantees contrast even over the brightest part of the shot */}
-      <div className="pointer-events-none absolute inset-0 bg-[#040a18]/62" />
-      {/* extra weight under the text column, and a fade into the white section below */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040a18]/88 via-[#040a18]/55 to-transparent" />
+      {/* Light flat scrim — enough to hold the photograph together, little
+          enough to leave the tooth visible. */}
+      {/* heavier on phones: there the crop puts the bright crown right under
+          the paragraph, which runs the full width */}
+      <div className="pointer-events-none absolute inset-0 bg-[#040a18]/48 lg:bg-[#040a18]/35" />
+      {/* The weight the type needs is put under the text column only, so the
+          right half of the frame stays bright. */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040a18]/88 via-[#040a18]/55 via-45% to-transparent" />
       {/* No fade into the section below: a gradient tall enough to read as a
           transition also reached the figures and bleached them. The hero ends
           on a clean edge instead. */}
+      <HeroTooth />
       <div className="med-grid" />
       <HeroCanvas tone="dark" />
       <div className="noise" />
