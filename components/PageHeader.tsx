@@ -21,7 +21,7 @@ export default function PageHeader({
 }) {
   return (
     <section className="relative overflow-hidden pb-16 lg:pb-24">
-      <div className="absolute inset-0 bg-gradient-to-b from-pearl to-white" />
+      <div className="absolute inset-0 bg-gradient-to-b from-pearl to-canvas" />
       <div className="mesh" />
       <div className="med-grid opacity-70" />
 

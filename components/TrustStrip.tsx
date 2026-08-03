@@ -109,13 +109,13 @@ export default function TrustStrip() {
 
       {/* partner marquee */}
       <Reveal delay={0.15}>
-        <div className="relative mt-16 overflow-hidden border-y border-line/80 bg-pearl/60 py-7">
+        <div className="relative mt-16 overflow-hidden border-y border-line/80 bg-pearl py-7">
           <div
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-white to-transparent"
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-pearl to-transparent"
             aria-hidden
           />
           <div
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-white to-transparent"
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-pearl to-transparent"
             aria-hidden
           />
           <div className="flex w-max animate-[marquee_38s_linear_infinite] gap-14 pr-14">

@@ -5,16 +5,22 @@
    ============================================================ */
 
 @theme {
-  /* Neutrals — white canvas. `white` is the surface token used by cards,
-     glass and the header; `pearl` is the alternating section tone. */
+  /* Neutrals — tinted paper. The canvas carries a cool cast so that the
+     white surfaces (cards, glass, the header) read as raised islands on it;
+     `pearl` stays the alternating section tone, a shade below the canvas. */
   --color-white: #ffffff;
-  --color-canvas: #ffffff;
-  --color-pearl: #f7f8fa;
-  --color-mist: #eceef2;
-  --color-line: #e2e6ec;
+  --color-canvas: #f4f7fc;
+  --color-pearl: #eaeff7;
+  --color-mist: #e4e9f1;
+  --color-line: #dde3ec;
+  /* `graphite` is left alone: besides the body ink it is the fill of the
+     dark sections (packages, the closing CTA, the footer), and those are not
+     to be touched. It holds 14.3:1 on the tinted paper anyway. The secondary
+     inks are text-only, and those are deepened — on #f4f7fc they each lost
+     about a point of contrast. */
   --color-graphite: #202124;
-  --color-slate: #4b5158;
-  --color-muted: #515763;
+  --color-slate: #434a55;
+  --color-muted: #49505d;
 
   /* Primary — Royal Blue */
   --color-royal-50: #eff4ff;
@@ -87,11 +93,57 @@ body {
   color: var(--color-graphite);
   font-family: var(--font-sans);
   font-size: 18px;
-  line-height: 1.6;
+  /* A hair more leading and a hair less tracking than on flat white: on a
+     tinted ground the line loses a little of its edge, and the extra air
+     gives it back without touching the size. */
+  line-height: 1.62;
+  letter-spacing: -0.004em;
   font-feature-settings: "cv02", "cv03", "cv04", "ss01";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+}
+
+/* The light backdrop: three very wide, very faint washes fixed to the
+   viewport, so the page drifts across them instead of them across the page.
+   Deliberately still — a moving background behind body copy is exactly the
+   thing that pulls the eye off the text. Peak tint is about 6%, which is
+   under a point of contrast for the ink above it. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      68rem 46rem at 6% -8%,
+      rgba(37, 99, 235, 0.07),
+      transparent 62%
+    ),
+    radial-gradient(
+      56rem 40rem at 102% 10%,
+      rgba(216, 190, 138, 0.08),
+      transparent 62%
+    ),
+    radial-gradient(
+      72rem 52rem at 52% 106%,
+      rgba(79, 174, 146, 0.06),
+      transparent 62%
+    );
+}
+
+/* Paper grain over the washes — it keeps the large flat areas from banding
+   on wide screens. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.022;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 ::selection {
