@@ -82,9 +82,12 @@ export default function Hero() {
       {/* The weight the type needs goes under the text column only, so the
           right half — where the patient is — stays clear. */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/94 via-white/78 via-52% to-transparent" />
-      {/* No fade into the section below: a gradient tall enough to read as a
-          transition also reached the figures and bleached them. The hero ends
-          on a clean edge instead. */}
+      {/* Растворение в канву: нижняя четверть экрана уходит из фотографии в
+          цвет страницы, и стык первого экрана со следующей секцией перестаёт
+          читаться линией. Слой лежит до контента, поэтому цифры и подсказка
+          остаются поверх него в полную силу — прошлый раз градиент их
+          бледнил именно потому, что шёл сверху. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[26%] bg-gradient-to-b from-transparent to-canvas" />
       <div className="med-grid" />
       <HeroCanvas tone="light" />
       <div className="noise" />
