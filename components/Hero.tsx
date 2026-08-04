@@ -29,38 +29,40 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="on-dark relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-[136px] lg:pb-16"
+      className="relative flex min-h-[100svh] items-center overflow-hidden pb-24 pt-[136px] lg:pb-16"
     >
       {/* --- background stack --- */}
       {/* photograph first, then the scrims that make the type legible on it */}
       <Image
-        src="/media/hero-bg.jpg"
+        src="/media/hero-patient.jpg"
         alt=""
         fill
         priority
         sizes="100vw"
         quality={90}
-        className="pointer-events-none object-cover object-[24%_74%] lg:object-[50%_82%]"
+        className="pointer-events-none object-cover object-[26%_52%] lg:object-[62%_32%]"
         aria-hidden
       />
-      {/* The frame is wide and its lit ridges sit along the bottom, so the
-          crop is pulled down: centred, a tall viewport showed only the dark
-          middle and the photograph read as a black field. On phones it is
-          pulled left as well — a 390px-wide crop of a 1.9:1 frame is a narrow
-          strip, and in the middle that strip is the dark valley between the
-          two ridges. */}
-      {/* Light flat scrim — enough to hold the photograph together, little
-          enough to leave the picture visible. This shot is dark to begin
-          with, so it takes far less than the previous one. */}
-      <div className="pointer-events-none absolute inset-0 bg-[#040a18]/30 lg:bg-[#040a18]/18" />
-      {/* The weight the type needs is put under the text column only, so the
-          right half of the frame stays bright. */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040a18]/88 via-[#040a18]/55 via-45% to-transparent" />
+      {/* From lg the frame is anchored to the patient — 62% across, 32% down:
+          the face is the one thing that must never be cropped, and the text
+          column sits to the left of it.
+          Below lg the crop is a narrow strip, and taken from the patient it
+          blew her face up to fill the screen right under the paragraph. There
+          the frame moves left instead, onto the surgery and the unit: quiet
+          background, and the room still says «клиника». */}
+      {/* This shot is light, so the scrims are light too. A flat white veil
+          first: it lifts the whole frame a step away from the type without
+          washing the picture out. Heavier below lg — there the type runs the
+          full width and crosses the picture instead of sitting beside it. */}
+      <div className="pointer-events-none absolute inset-0 bg-white/56 lg:bg-white/22" />
+      {/* The weight the type needs goes under the text column only, so the
+          right half — where the patient is — stays clear. */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/94 via-white/72 via-42% to-transparent" />
       {/* No fade into the section below: a gradient tall enough to read as a
           transition also reached the figures and bleached them. The hero ends
           on a clean edge instead. */}
       <div className="med-grid" />
-      <HeroCanvas tone="dark" />
+      <HeroCanvas tone="light" />
       <div className="noise" />
 
       {/* cinematic video slot — drop hero.mp4 into /public/media to enable;
@@ -84,9 +86,9 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 hidden lg:block"
         aria-hidden
       >
-        <div className="glass-dark float-slow absolute bottom-[8%] left-[2%] h-36 w-52 rounded-[28px] opacity-70" />
-        <div className="glass-dark float-slower absolute right-[4%] top-[12%] h-28 w-44 rounded-[24px] opacity-70" />
-        <div className="glass-dark float-slow absolute bottom-[6%] right-[46%] h-20 w-20 rounded-[22px] opacity-60" />
+        <div className="glass float-slow absolute bottom-[8%] left-[2%] h-36 w-52 rounded-[28px] opacity-55" />
+        <div className="glass float-slower absolute right-[4%] top-[12%] h-28 w-44 rounded-[24px] opacity-55" />
+        <div className="glass float-slow absolute bottom-[6%] right-[46%] h-20 w-20 rounded-[22px] opacity-45" />
       </motion.div>
 
       {/* AI data flow */}
@@ -137,7 +139,7 @@ export default function Hero() {
               <span className="chip">Микроскоп Leica на каждом кресле</span>
             </motion.div>
 
-            <h1 className="t-h1 mt-7 font-bold text-white [text-shadow:0_2px_28px_rgba(4,10,24,0.55)]">
+            <h1 className="t-h1-hero mt-7 font-bold text-graphite [text-shadow:0_1px_18px_rgba(255,255,255,0.85)]">
               <SplitText text="Имплантация зубов" delay={0.25} />
               <br />
               <motion.span
@@ -154,7 +156,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.9, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-              className="t-lead mt-7 max-w-xl text-white/82"
+              className="t-lead mt-7 max-w-lg text-slate"
             >
               3D-планирование, хирургический шаблон и временная коронка в день
               операции. Стоимость под ключ — 55 000–120 000 ₽ вместе с коронкой,
@@ -197,7 +199,7 @@ export default function Hero() {
 
               <a
                 href={`tel:${site.phoneHref}`}
-                className="ml-1 hidden text-[1.05rem] font-semibold tracking-tight text-white transition-colors hover:text-royal-200 sm:block"
+                className="ml-1 hidden text-[1.05rem] font-semibold tracking-tight text-graphite transition-colors hover:text-royal-800 sm:block"
               >
                 {site.phone}
               </a>
@@ -211,10 +213,10 @@ export default function Hero() {
             >
               {facts.map((f) => (
                 <div key={f.label}>
-                  <p className="t-h4 font-bold tracking-tight text-white">
+                  <p className="t-h4 font-bold tracking-tight text-graphite">
                     {f.value}
                   </p>
-                  <p className="mt-1.5 text-[0.86rem] leading-snug text-white/72">
+                  <p className="mt-1.5 text-[0.86rem] leading-snug text-muted">
                     {f.label}
                   </p>
                 </div>
@@ -227,12 +229,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="panel-dark glass-refract hairline relative overflow-hidden rounded-[30px] p-7 lg:ml-8 lg:p-8 xl:ml-14"
+            className="glass glass-refract hairline relative overflow-hidden rounded-[30px] p-7 lg:ml-8 lg:p-8 xl:ml-14"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="t-eyebrow text-royal-200">Свободные окна</p>
-                <p className="mt-2 text-[1.32rem] font-bold leading-tight text-white">
+                <p className="t-eyebrow text-royal-800">Свободные окна</p>
+                <p className="mt-2 text-[1.32rem] font-bold leading-tight text-graphite">
                   Ближайшая консультация — сегодня
                 </p>
               </div>
@@ -250,10 +252,10 @@ export default function Hero() {
               ].map(([what, when]) => (
                 <li
                   key={what}
-                  className="flex items-center justify-between rounded-2xl border border-white/12 bg-white/[0.07] px-4 py-3 text-[0.95rem] text-white/88"
+                  className="flex items-center justify-between rounded-2xl border border-line bg-white/70 px-4 py-3 text-[0.95rem] text-slate"
                 >
                   <span>{what}</span>
-                  <span className="tnum font-semibold text-royal-200">{when}</span>
+                  <span className="tnum font-semibold text-royal-800">{when}</span>
                 </li>
               ))}
             </ul>
@@ -272,8 +274,8 @@ export default function Hero() {
               Позвонить {site.phone}
             </a>
 
-            <p className="mt-5 flex items-baseline gap-2 text-[0.84rem] text-white/68">
-              <Counter to={site.stats.reviews} className="font-semibold text-white" />
+            <p className="mt-5 flex items-baseline gap-2 text-[0.84rem] text-muted">
+              <Counter to={site.stats.reviews} className="font-semibold text-graphite" />
               отзывов, средняя оценка {site.stats.rating}
             </p>
           </motion.aside>
@@ -285,13 +287,16 @@ export default function Hero() {
       <Link
         href="#trust"
         aria-label="К следующему разделу"
-        className="absolute bottom-8 right-[4%] z-10 hidden flex-col items-center gap-2 text-white/70 transition-colors hover:text-white lg:flex"
+        /* Подсказка стоит над фотографией, а не над шторкой, и попадает то на
+           светлую стену, то на тёмное кресло — на кресле графит давал 1,4:1.
+           Своё стекло под ней снимает зависимость от кадра. */
+        className="glass absolute bottom-8 right-[4%] z-10 hidden flex-col items-center gap-2 rounded-full px-4 py-3 text-muted transition-colors hover:text-graphite lg:flex"
       >
         <span className="text-[0.72rem] uppercase tracking-[0.2em]">Листайте</span>
         <motion.span
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          className="block h-9 w-[1px] bg-gradient-to-b from-white/70 to-transparent"
+          className="block h-9 w-[1px] bg-gradient-to-b from-graphite/45 to-transparent"
         />
       </Link>
     </section>

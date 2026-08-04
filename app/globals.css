@@ -234,6 +234,19 @@ button {
 .t-h1 {
   font-size: clamp(2.35rem, 1.35rem + 4.2vw, 4.4rem);
 }
+
+/* Заголовок первого экрана. Кегль ниже общего: снимок с человеком делит
+   кадр пополам, и на прежних 4,4rem строка доезжала до лица. Здесь потолок
+   3,5rem, а колонка ограничена по ширине — заголовок остаётся в своей
+   половине при любой ширине окна. */
+.t-h1-hero {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.1;
+  font-variant-numeric: lining-nums;
+  font-size: clamp(2.1rem, 1.3rem + 2.9vw, 3.5rem);
+}
 .t-h2 {
   font-size: clamp(1.95rem, 1.25rem + 2.5vw, 3.25rem);
 }
@@ -502,6 +515,15 @@ button {
   to {
     background-position: 200% center;
   }
+}
+
+/* Вторая строка заголовка первого экрана: ровный синий, без бега блика.
+   Переливания на первом экране отключены — они спорят с фотографией. */
+.t-h1-hero .text-shimmer {
+  background: none;
+  -webkit-text-fill-color: var(--color-royal-700);
+  color: var(--color-royal-700);
+  animation: none;
 }
 
 .text-shimmer {

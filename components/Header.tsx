@@ -97,9 +97,12 @@ export default function Header() {
         .slice(0, 7)
     : index.slice(0, 6);
 
-  /** At the top of the home page the header floats over the dark hero photo,
-   *  so its ink has to flip to white until the user scrolls. */
-  const overHero = pathname === "/" && !scrolled && !open;
+  /** The hero photograph used to be dark, and the header flipped to white ink
+   *  while it floated over it. The shot is light now — white ink would be
+   *  invisible on it — so the header keeps its normal dark ink everywhere.
+   *  Kept as a named flag rather than deleted: swap the condition back if a
+   *  dark hero returns. */
+  const overHero = false;
 
   const hover = (menu: typeof open) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
