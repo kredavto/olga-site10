@@ -47,16 +47,25 @@ export default function Hero() {
         className="pointer-events-none scale-110 object-cover object-[62%_32%] blur-[42px] lg:block"
         aria-hidden
       />
-      <Image
-        src="/media/hero-patient.jpg"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        quality={90}
-        className="pointer-events-none object-cover object-[26%_52%] lg:object-contain lg:object-right"
-        aria-hidden
-      />
+      {/* Вписанный во весь экран кадр давал масштаб 1,96 против 2,17 у
+          заполнения — десять процентов, глазом не видно. Поэтому от lg
+          фотография живёт в собственной рамке: 86% ширины и 84% высоты
+          секции, прижата влево. Масштаб падает до 1,69 — это уже читается,
+          а лицо смещается в просвет между текстом и панелью записи. */}
+      <div
+        className="pointer-events-none absolute inset-0 lg:inset-y-[8%] lg:left-0 lg:right-[14%] lg:[mask-composite:intersect] lg:[-webkit-mask-composite:source-in] lg:[mask-image:linear-gradient(to_right,#000_0_72%,transparent_97%),linear-gradient(to_bottom,transparent_0,#000_9%,#000_91%,transparent_100%)]"
+      >
+        <Image
+          src="/media/hero-patient.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          quality={90}
+          className="object-cover object-[26%_52%] lg:object-contain lg:object-left"
+          aria-hidden
+        />
+      </div>
       {/* From lg the photograph is fitted whole instead of cropped to fill:
           filling a 16:9 screen from a 1.77:1 frame scaled it up until the top
           of her head went past the edge. Fitted, the head is complete, and the
@@ -72,7 +81,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-white/56 lg:bg-white/22" />
       {/* The weight the type needs goes under the text column only, so the
           right half — where the patient is — stays clear. */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/94 via-white/72 via-42% to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/94 via-white/78 via-52% to-transparent" />
       {/* No fade into the section below: a gradient tall enough to read as a
           transition also reached the figures and bleached them. The hero ends
           on a clean edge instead. */}
