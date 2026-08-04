@@ -62,7 +62,7 @@ export default function Hero() {
           priority
           sizes="100vw"
           quality={90}
-          className="object-cover object-[26%_52%] lg:object-contain lg:object-left"
+          className="object-cover object-[26%_52%] brightness-[1.06] saturate-[1.06] lg:object-contain lg:object-left"
           aria-hidden
         />
       </div>
@@ -78,7 +78,7 @@ export default function Hero() {
           first: it lifts the whole frame a step away from the type without
           washing the picture out. Heavier below lg — there the type runs the
           full width and crosses the picture instead of sitting beside it. */}
-      <div className="pointer-events-none absolute inset-0 bg-white/56 lg:bg-white/22" />
+      <div className="pointer-events-none absolute inset-0 bg-white/44 lg:bg-white/10" />
       {/* The weight the type needs goes under the text column only, so the
           right half — where the patient is — stays clear. */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-white/94 via-white/78 via-52% to-transparent" />
@@ -111,7 +111,6 @@ export default function Hero() {
         aria-hidden
       >
         <div className="glass float-slow absolute bottom-[8%] left-[2%] h-36 w-52 rounded-[28px] opacity-55" />
-        <div className="glass float-slower absolute right-[4%] top-[12%] h-28 w-44 rounded-[24px] opacity-55" />
         <div className="glass float-slow absolute bottom-[6%] right-[46%] h-20 w-20 rounded-[22px] opacity-45" />
       </motion.div>
 
@@ -253,7 +252,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="glass glass-refract hairline relative overflow-hidden rounded-[30px] p-7 lg:ml-8 lg:p-8 xl:ml-14"
+            className="glass glass-refract hairline relative overflow-hidden rounded-[30px] p-7 lg:ml-8 lg:translate-x-6 lg:p-8 xl:ml-14 xl:translate-x-10"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
