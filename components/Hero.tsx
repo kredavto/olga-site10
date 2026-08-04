@@ -33,6 +33,20 @@ export default function Hero() {
     >
       {/* --- background stack --- */}
       {/* photograph first, then the scrims that make the type legible on it */}
+      {/* Backdrop: the same shot blown up and blurred out of legibility. It
+          only fills what the fitted frame above leaves bare — on its own the
+          letterbox would be a flat band with a visible seam. Below lg the
+          frame covers the whole section and this layer never shows. */}
+      <Image
+        src="/media/hero-patient.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        quality={55}
+        className="pointer-events-none scale-110 object-cover object-[62%_32%] blur-[42px] lg:block"
+        aria-hidden
+      />
       <Image
         src="/media/hero-patient.jpg"
         alt=""
@@ -40,16 +54,17 @@ export default function Hero() {
         priority
         sizes="100vw"
         quality={90}
-        className="pointer-events-none object-cover object-[26%_52%] lg:object-[62%_32%]"
+        className="pointer-events-none object-cover object-[26%_52%] lg:object-contain lg:object-right"
         aria-hidden
       />
-      {/* From lg the frame is anchored to the patient — 62% across, 32% down:
-          the face is the one thing that must never be cropped, and the text
-          column sits to the left of it.
-          Below lg the crop is a narrow strip, and taken from the patient it
-          blew her face up to fill the screen right under the paragraph. There
-          the frame moves left instead, onto the surgery and the unit: quiet
-          background, and the room still says «клиника». */}
+      {/* From lg the photograph is fitted whole instead of cropped to fill:
+          filling a 16:9 screen from a 1.77:1 frame scaled it up until the top
+          of her head went past the edge. Fitted, the head is complete, and the
+          frame is pushed right so the face stays clear of the text column.
+          Below lg it stays cropped — fitted into a phone screen the shot would
+          be a 200px strip in the middle of the page — and the crop moves left,
+          onto the surgery and the unit: a narrow strip taken from the patient
+          blew her face up to fill the screen right under the paragraph. */}
       {/* This shot is light, so the scrims are light too. A flat white veil
           first: it lifts the whole frame a step away from the type without
           washing the picture out. Heavier below lg — there the type runs the
