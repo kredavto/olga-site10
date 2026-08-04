@@ -13,6 +13,7 @@ import { Reveal } from "@/components/motion";
 import { doctors, getDoctor, cases } from "@/lib/data";
 import { services } from "@/lib/services";
 import { doctorSchema } from "@/lib/schema";
+import { fitTitle } from "@/lib/meta";
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -24,8 +25,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { id } = await params;
   const d = getDoctor(id);
   if (!d) return {};
+  /* Роль у врачей идёт через запятую («Стоматолог-ортопед, эстетическая
+     реставрация»), и вместе с хвостом шаблона заголовок доходил до 87
+     знаков. Берём первую специальность, а если и с ней не влезает —
+     остаётся одно имя. Полная роль есть в описании и на самой странице. */
+  const role = d.role.split(",")[0].trim();
   return {
-    title: `${d.name} — ${d.role}`,
+    title: fitTitle(`${d.name} — ${d.role}`, `${d.name} — ${role}`, d.name),
     description: `${d.name}, ${d.role}. Стаж с ${d.since} года, ${d.procedures}. Образование, сертификаты и направления работы.`,
     alternates: { canonical: `/doctors/${d.id}` },
   };
@@ -37,6 +43,11 @@ export default async function DoctorPage({ params }: Params) {
   if (!d) notFound();
 
   const years = new Date().getFullYear() - d.since;
+  /* «4 100+ операций имплантации» — число записано с пробелом в разряде
+     тысяч, поэтому разбиение по пробелу оставляло на карточке «4». Берём
+     всю числовую часть вместе с разрядами и плюсом. */
+  const procedures =
+    d.procedures.match(/^[\d\s ]+\+?/)?.[0].trim() ?? d.procedures;
   const own = services.filter((s) => d.services.includes(s.slug));
   const work = cases.filter((c) => c.doctorId === d.id);
 
@@ -52,7 +63,7 @@ export default async function DoctorPage({ params }: Params) {
         lead={`«${d.philosophy}»`}
         metrics={[
           { value: `${years} лет`, label: "клинический стаж" },
-          { value: d.procedures.split(" ")[0], label: "выполненных процедур" },
+          { value: procedures, label: "выполненных процедур" },
           { value: String(d.certificates.length), label: "международных сертификата" },
           { value: String(own.length), label: "профильных направления" },
         ]}

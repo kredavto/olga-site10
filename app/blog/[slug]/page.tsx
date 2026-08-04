@@ -7,6 +7,7 @@ import JsonLd from "@/components/JsonLd";
 import { Reveal } from "@/components/motion";
 import { posts } from "@/lib/data";
 import { getPostBody } from "@/lib/posts";
+import { fitTitle } from "@/lib/meta";
 import { site } from "@/lib/site";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -20,7 +21,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const p = posts.find((x) => x.slug === slug);
   if (!p) return {};
   return {
-    title: p.title,
+    /* У длинных названий берём часть до двоеточия: она несёт тему, а
+       уточнение после него при обрезке терялось бы всё равно. */
+    title: fitTitle(p.title, p.title.split(":")[0].trim()),
     description: p.excerpt,
     alternates: { canonical: `/blog/${p.slug}` },
     openGraph: {
