@@ -9,10 +9,14 @@
      white surfaces (cards, glass, the header) read as raised islands on it;
      `pearl` stays the alternating section tone, a shade below the canvas. */
   --color-white: #ffffff;
-  --color-canvas: #e9eff8;
-  --color-pearl: #dde5f1;
-  --color-mist: #d6dfec;
-  --color-line: #ccd6e4;
+  /* Оттенок снят с первого экрана: там фон вокруг текстовой колонки —
+     #f0f0f2, почти нейтральный. Прежняя канва #e9eff8 была и голубее, и на
+     девять пунктов темнее, из-за чего главная и внутренние страницы
+     выглядели из разных наборов. */
+  --color-canvas: #f0f1f4;
+  --color-pearl: #e6e8ee;
+  --color-mist: #dee1e9;
+  --color-line: #d5d9e2;
   /* `graphite` is left alone: besides the body ink it is the fill of the
      dark sections (packages, the closing CTA, the footer), and those are not
      to be touched. It holds 14.3:1 on the tinted paper anyway. The secondary
@@ -118,17 +122,17 @@ body::before {
   background:
     radial-gradient(
       68rem 46rem at 6% -8%,
-      rgba(37, 99, 235, 0.16),
+      rgba(37, 99, 235, 0.09),
       transparent 62%
     ),
     radial-gradient(
       56rem 40rem at 102% 10%,
-      rgba(216, 190, 138, 0.17),
+      rgba(216, 190, 138, 0.1),
       transparent 62%
     ),
     radial-gradient(
       72rem 52rem at 52% 106%,
-      rgba(79, 174, 146, 0.13),
+      rgba(79, 174, 146, 0.075),
       transparent 62%
     );
 }
