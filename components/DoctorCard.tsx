@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { Doctor } from "@/lib/data";
 import { openBooking } from "@/lib/booking";
@@ -17,6 +18,40 @@ export function Portrait({
   className?: string;
 }) {
   const [a, b] = doctor.tone;
+  /* Снимок ищется по идентификатору врача: /media/doctors/<id>.jpg. Файла
+     может не быть — тогда остаётся нарисованная заглушка. Так фотографии
+     подставляются простой заливкой файлов в public, без правок в коде.
+
+     Наличие проверяется отдельным Image() в эффекте, а не onError на теге:
+     разметка приходит с сервера, картинка успевает отвалиться до того, как
+     React навесит обработчик, и событие теряется — в вёрстке оставалась
+     иконка битого изображения. До ответа показываем заглушку, поэтому
+     пустого места не бывает ни на каком кадре. */
+  const src = `/media/doctors/${doctor.id}.jpg`;
+  const [hasPhoto, setHasPhoto] = useState(false);
+
+  useEffect(() => {
+    let alive = true;
+    const probe = new Image();
+    probe.onload = () => alive && setHasPhoto(true);
+    probe.src = src;
+    return () => {
+      alive = false;
+    };
+  }, [src]);
+
+  if (hasPhoto) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={src}
+        alt=""
+        className={`object-cover object-top ${className}`}
+        aria-hidden
+      />
+    );
+  }
+
   return (
     <div
       className={`relative overflow-hidden ${className}`}
