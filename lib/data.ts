@@ -468,7 +468,19 @@ export const faqs: Faq[] = [
    Blog
    --------------------------------------------------------------- */
 
-export const posts = [
+export type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  read: string;
+  category: string;
+  /** Обложка в `public`. Есть — карточка показывает снимок, нет — рисуется
+   *  градиентная заглушка. */
+  cover?: string;
+};
+
+export const posts: Post[] = [
   {
     slug: "kak-vybrat-implant",
     title: "Как выбрать имплант и не переплатить",
@@ -477,6 +489,7 @@ export const posts = [
     date: "2026-06-14",
     read: "8 мин",
     category: "Имплантация",
+    cover: "/media/blog/kak-vybrat-implant.jpg",
   },
   {
     slug: "viniry-mify",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import PageHeader from "@/components/PageHeader";
 import FinalCta from "@/components/FinalCta";
 import { Reveal } from "@/components/motion";
@@ -51,14 +52,30 @@ export default function BlogPage() {
                   · {lead.read}
                 </p>
               </div>
-              <div
-                className="hidden aspect-[4/3] rounded-[24px] lg:block"
-                style={{
-                  background:
-                    "linear-gradient(140deg,#eff4ff,#bfd3fe 55%,#e7dccb)",
-                }}
-                aria-hidden
-              />
+              {/* Обложка статьи. Указана в данных — показывается снимок,
+                  не указана — остаётся прежняя градиентная заглушка, так что
+                  ведущей может стать любая статья без правок в вёрстке. */}
+              {lead.cover ? (
+                <div className="relative hidden aspect-[4/3] overflow-hidden rounded-[24px] lg:block">
+                  <Image
+                    src={lead.cover}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 40vw, 0px"
+                    className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                    aria-hidden
+                  />
+                </div>
+              ) : (
+                <div
+                  className="hidden aspect-[4/3] rounded-[24px] lg:block"
+                  style={{
+                    background:
+                      "linear-gradient(140deg,#eff4ff,#bfd3fe 55%,#e7dccb)",
+                  }}
+                  aria-hidden
+                />
+              )}
             </Link>
           </Reveal>
 
