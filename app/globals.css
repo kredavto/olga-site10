@@ -279,11 +279,18 @@ button {
 
 /* ---------- Layout ---------- */
 
-.shell {
-  width: 100%;
-  max-width: 1280px;
-  margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 3rem);
+/* В слое components, а не голым правилом: без слоя .shell объявлен после
+   утилит Tailwind и при равной специфичности выигрывал у них. Из-за этого
+   `max-w-3xl` рядом с `shell` не действовал, и колонка текста в статье и в
+   политике держала 1166px вместо 768 — строка в полторы сотни знаков вместо
+   читаемых восьмидесяти. */
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+  }
 }
 
 .section {

@@ -16,7 +16,7 @@ const facts = [
   { value: "98,7%", label: "успешных операций имплантации" },
 ];
 
-export default function Hero() {
+export default function Hero({ hasVideo = false }: { hasVideo?: boolean }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -24,7 +24,11 @@ export default function Hero() {
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
   const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
-  const blur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(7px)"]);
+  const blur = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["blur(0px)", "blur(7px)"],
+  );
 
   return (
     <section
@@ -52,9 +56,7 @@ export default function Hero() {
           фотография живёт в собственной рамке: 86% ширины и 84% высоты
           секции, прижата влево. Масштаб падает до 1,69 — это уже читается,
           а лицо смещается в просвет между текстом и панелью записи. */}
-      <div
-        className="pointer-events-none absolute inset-0 lg:inset-y-[8%] lg:left-0 lg:right-[14%] lg:[mask-composite:intersect] lg:[-webkit-mask-composite:source-in] lg:[mask-image:linear-gradient(to_right,#000_0_72%,transparent_97%),linear-gradient(to_bottom,transparent_0,#000_9%,#000_91%,transparent_100%)]"
-      >
+      <div className="pointer-events-none absolute inset-0 lg:inset-y-[8%] lg:left-0 lg:right-[14%] lg:[mask-composite:intersect] lg:[-webkit-mask-composite:source-in] lg:[mask-image:linear-gradient(to_right,#000_0_72%,transparent_97%),linear-gradient(to_bottom,transparent_0,#000_9%,#000_91%,transparent_100%)]">
         <Image
           src="/media/hero-patient.jpg"
           alt=""
@@ -93,19 +95,23 @@ export default function Hero() {
       <div className="noise" />
 
       {/* cinematic video slot — drop hero.mp4 into /public/media to enable;
-          it plays over the photograph, under the scrims */}
-      <video
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-1000 [&[data-ready='1']]:opacity-[0.38]"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        aria-hidden
-        onCanPlay={(e) => e.currentTarget.setAttribute("data-ready", "1")}
-      >
-        <source src="/media/hero.mp4" type="video/mp4" />
-      </video>
+          it plays over the photograph, under the scrims. The page checks the
+          file at build time: without that check the browser fetched a missing
+          file on every visit. */}
+      {hasVideo && (
+        <video
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-1000 [&[data-ready='1']]:opacity-[0.38]"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-hidden
+          onCanPlay={(e) => e.currentTarget.setAttribute("data-ready", "1")}
+        >
+          <source src="/media/hero.mp4" type="video/mp4" />
+        </video>
+      )}
 
       {/* floating glass panels */}
       <motion.div
@@ -154,7 +160,11 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.8,
+                delay: 0.15,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="flex flex-wrap items-center gap-2.5"
             >
               <span className="chip">
@@ -171,7 +181,11 @@ export default function Hero() {
               <motion.span
                 initial={{ opacity: 0, y: 26, filter: "blur(12px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 1, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  duration: 1,
+                  delay: 0.55,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className="text-shimmer inline-block"
               >
                 под ключ за один визит
@@ -181,7 +195,11 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.9, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.9,
+                delay: 0.85,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="t-lead mt-7 max-w-lg text-slate"
             >
               3D-планирование, хирургический шаблон и временная коронка в день
@@ -192,7 +210,11 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 0.8,
+                delay: 1.05,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="mt-9 flex flex-wrap items-center gap-3.5"
             >
               <Magnetic strength={0.28}>
@@ -281,7 +303,9 @@ export default function Hero() {
                   className="flex items-center justify-between rounded-2xl border border-line bg-white/70 px-4 py-3 text-[0.95rem] text-slate"
                 >
                   <span>{what}</span>
-                  <span className="tnum font-semibold text-royal-800">{when}</span>
+                  <span className="tnum font-semibold text-royal-800">
+                    {when}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -301,7 +325,10 @@ export default function Hero() {
             </a>
 
             <p className="mt-5 flex items-baseline gap-2 text-[0.84rem] text-muted">
-              <Counter to={site.stats.reviews} className="font-semibold text-graphite" />
+              <Counter
+                to={site.stats.reviews}
+                className="font-semibold text-graphite"
+              />
               отзывов, средняя оценка {site.stats.rating}
             </p>
           </motion.aside>
@@ -318,7 +345,9 @@ export default function Hero() {
            Своё стекло под ней снимает зависимость от кадра. */
         className="glass absolute bottom-8 right-[4%] z-10 hidden flex-col items-center gap-2 rounded-full px-4 py-3 text-muted transition-colors hover:text-graphite lg:flex"
       >
-        <span className="text-[0.72rem] uppercase tracking-[0.2em]">Листайте</span>
+        <span className="text-[0.72rem] uppercase tracking-[0.2em]">
+          Листайте
+        </span>
         <motion.span
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}

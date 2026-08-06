@@ -1,3 +1,6 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import TrustStrip from "@/components/TrustStrip";
@@ -17,10 +20,16 @@ import { Reveal } from "@/components/motion";
 import { faqs, posts } from "@/lib/data";
 import { faqSchema } from "@/lib/schema";
 
+/* Ролик первого экрана необязателен. Раньше <video> отдавался всегда, и
+   браузер на каждой загрузке главной ходил за несуществующим файлом,
+   получая 404. Наличие проверяется здесь: страница серверная, файл лежит
+   в public, проверка стоит один раз на сборке. */
+const hasHeroVideo = existsSync(join(process.cwd(), "public/media/hero.mp4"));
+
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <Hero hasVideo={hasHeroVideo} />
       <TrustStrip />
       <Advantages />
       <ServicesGrid />

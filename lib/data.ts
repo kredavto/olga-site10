@@ -16,11 +16,15 @@ export type Doctor = {
   /** Duotone gradient used for the portrait frame until real photos are added */
   tone: [string, string];
   initials: string;
+  /** Снимок в `public`. Есть — карточка показывает его, нет — рисуется
+   *  дуотон-заглушка с инициалами. */
+  photo?: string;
 };
 
 export const doctors: Doctor[] = [
   {
     id: "kovalev",
+    photo: "/media/doctors/kovalev.jpg",
     name: "Ковалёв Артём Дмитриевич",
     role: "Челюстно-лицевой хирург, имплантолог",
     since: 2006,
@@ -43,6 +47,7 @@ export const doctors: Doctor[] = [
   },
   {
     id: "morozova",
+    photo: "/media/doctors/morozova.jpg",
     name: "Морозова Елена Сергеевна",
     role: "Стоматолог-ортопед, эстетическая реставрация",
     since: 2009,
@@ -65,6 +70,7 @@ export const doctors: Doctor[] = [
   },
   {
     id: "sokolov",
+    photo: "/media/doctors/sokolov.jpg",
     name: "Соколов Игорь Павлович",
     role: "Стоматолог-терапевт, эндодонтист",
     since: 2011,
@@ -87,6 +93,7 @@ export const doctors: Doctor[] = [
   },
   {
     id: "arutyunyan",
+    photo: "/media/doctors/arutyunyan.jpg",
     name: "Арутюнян Ани Гагиковна",
     role: "Врач-ортодонт, гнатолог",
     since: 2012,
@@ -109,6 +116,7 @@ export const doctors: Doctor[] = [
   },
   {
     id: "voronova",
+    photo: "/media/doctors/voronova.jpg",
     name: "Воронова Мария Алексеевна",
     role: "Пародонтолог, детский стоматолог",
     since: 2014,

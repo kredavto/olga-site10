@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/PageHeader";
 import FinalCta from "@/components/FinalCta";
@@ -57,6 +58,25 @@ export default async function PostPage({ params }: Params) {
 
       <article className="section-tight relative overflow-hidden">
         <div className="shell relative max-w-3xl">
+          {/* Обложка открывает текст, а не повторяется в конце: на странице
+              статьи она работает вводом в тему. Показывается, только если
+              указана в данных — у остальных статей её пока нет. */}
+          {post.cover && (
+            <Reveal>
+              <div className="relative mb-12 aspect-[16/10] overflow-hidden rounded-[28px]">
+                <Image
+                  src={post.cover}
+                  alt=""
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 768px, 100vw"
+                  className="object-cover"
+                  aria-hidden
+                />
+              </div>
+            </Reveal>
+          )}
+
           {body.sections.map((s, i) => (
             <Reveal key={s.h} delay={i * 0.04}>
               <section className="mb-12">
